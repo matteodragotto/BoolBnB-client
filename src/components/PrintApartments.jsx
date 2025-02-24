@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Autoplay, FreeMode, Pagination } from 'swiper/modules';
+import { FreeMode, Pagination } from 'swiper/modules';
 
 const PrintApartments = ({ images }) => {
 
