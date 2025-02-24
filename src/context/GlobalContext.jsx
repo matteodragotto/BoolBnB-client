@@ -1,12 +1,39 @@
 import { createContext, useContext, useState } from "react"
 import axios from "axios"
 
+const GlobalContext = createContext()
 
 
-const GlobalContext = () => {
+const GlobalProvider = ({ children }) => {
+
+  const api_url = 'http://localhost:3000/'
+
+  const [apartments, setApartments] = useState([])
+
+  const fetchApartments = () => {
+    axios.get(`${api_url}immobili`)
+      .then(res => {
+        setApartments(res.data)
+      })
+  }
+
+
+
+  const value = {
+    apartments,
+    setApartments,
+    fetchApartments
+  }
+
   return (
-    <div>GlobalContext</div>
+    <GlobalContext.Provider value={value} >
+      {children}
+    </GlobalContext.Provider >
   )
 }
 
-export default GlobalContext
+const useGlobalContext = () => {
+  return useContext(GlobalContext)
+}
+
+export { GlobalProvider, useGlobalContext }
