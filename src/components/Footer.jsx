@@ -26,7 +26,7 @@ const Footer = () => {
 
                 <div className="flex items-center">
                     <Link to="/assistenza">
-                        <button className="text-white px-4 rounded border border-white py-2">Assistenza</button>
+                        <button className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full mt-4 hover:scale-105 transition duration-300 w-64 border border-white">Assistenza</button>
                     </Link>
                 </div>
             </div>
