@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// validazione per immobili
 const storeImmobiliSchema = z.array(z.object({
     id: z.number().positive(),
     titolo: z.string()
@@ -71,4 +70,4 @@ const storeImmobiliSchema = z.array(z.object({
 })
 );
 
-export { storeImmobiliSchema };
+export default storeImmobiliSchema;

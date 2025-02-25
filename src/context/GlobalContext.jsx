@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import axios from "axios"
-import { storeImmobiliSchema } from "../validationSchema"
+import storeImmobiliSchema from "../validationSchema"
 
 const GlobalContext = createContext()
 
@@ -47,7 +47,7 @@ const GlobalProvider = ({ children }) => {
 
     axios.get(`${api_url}immobili/search?${query}`)
       .then(res => {
-        setSearchResults(res.data)
+        setSearchResults(res.data);
       })
       .catch(error => {
         console.error('Errore nella ricerca:', error);
