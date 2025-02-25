@@ -11,6 +11,11 @@ const GlobalProvider = ({ children }) => {
   const [apartments, setApartments] = useState([])
   const [searchResults, setSearchResults] = useState([])
   const [searchData, setSearchData] = useState('')
+  const [priceMin, setPriceMin] = useState('');
+  const [priceMax, setPriceMax] = useState('');
+  const [roomsMin, setRoomsMin] = useState(1);
+  const [roomsMax, setRoomsMax] = useState(3);
+
 
   const fetchApartments = () => {
     axios.get(`${api_url}immobili?page=1`)
@@ -23,6 +28,11 @@ const GlobalProvider = ({ children }) => {
 
   const searchApartments = () => {
     let query = `city=${searchData}`
+
+    if (priceMin) query += `&price_min=${priceMin}`;
+    if (priceMax) query += `&price_max=${priceMax}`;
+    if (roomsMin) query += `&rooms_min=${roomsMin}`;
+    if (roomsMax) query += `&rooms_max=${roomsMax}`;
 
     axios.get(`${api_url}immobili/search?${query}`)
       .then(res => {
@@ -41,7 +51,11 @@ const GlobalProvider = ({ children }) => {
     setSearchData,
     searchResults,
     setSearchResults,
-    searchApartments
+    searchApartments,
+    setPriceMin,
+    setPriceMax,
+    setRoomsMin,
+    setRoomsMax
   }
 
   return (
