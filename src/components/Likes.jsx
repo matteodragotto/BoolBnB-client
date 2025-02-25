@@ -23,10 +23,11 @@ const Likes = ({ apartment }) => {
   }
 
   return (
-    <p>
-      <button className="cursor-pointer" onClick={() => incrementLIkes(apartment.id)}><FontAwesomeIcon icon={faHeart} style={{ color: "#6D1920" }} /></button> {apartment.mi_piace}
-    </p>
-
+    <div>
+      <button className="absolute top-2 left-2 bg-white px-3 py-2 rounded-full shadow-md cursor-pointer hover:scale-110 transition z-10 flex items-center" onClick={() => incrementLIkes(apartment.id)}><FontAwesomeIcon icon={faHeart} className="text-red-600 text-xl" />
+        <span className="ml-1 text-black font-semibold">{apartment.mi_piace}</span>
+      </button>
+    </div>
   )
 }
 
