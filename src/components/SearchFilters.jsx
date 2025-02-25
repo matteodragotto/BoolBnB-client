@@ -5,23 +5,10 @@ const SearchFilters = () => {
 
   const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments } = useGlobalContext()
 
-  const removeFilters = () => {
-    setPriceMin('');
-    setPriceMax('');
-    setRoomsMin(1);
-    setRoomsMax(3);
-    searchApartments()
-  };
-
-  const applyFilters = () => {
-    searchApartments();
-  };
-
   useEffect(() => {
-    console.log('Prezzo Minimo:', priceMin);
-    console.log('Prezzo Massimo:', priceMax);
-    console.log('Numero Minimo di Stanze:', roomsMin);
-    console.log('Numero Massimo di Stanze:', roomsMax);
+    searchApartments()
+    console.log(priceMin);
+
   }, [priceMin, priceMax, roomsMin, roomsMax])
 
   return (
@@ -70,8 +57,7 @@ const SearchFilters = () => {
         </select>
       </div>
 
-      <button className="p-3 bg-gray-500 rounded-lg cursor-pointer" onClick={applyFilters}>Applica Filtri</button>
-      <button className="p-3 bg-gray-500 rounded-lg cursor-pointer" onClick={removeFilters}>Rimuovi Filtri</button>
+
 
     </div>
   )

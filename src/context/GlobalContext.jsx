@@ -25,6 +25,7 @@ const GlobalProvider = ({ children }) => {
         setApartments(res.data.data)
       })
   }
+
   const searchApartments = () => {
     let queryParams = { city: searchData };
 
@@ -54,9 +55,13 @@ const GlobalProvider = ({ children }) => {
     searchResults,
     setSearchResults,
     searchApartments,
+    priceMin,
     setPriceMin,
+    priceMax,
     setPriceMax,
+    roomsMin,
     setRoomsMin,
+    roomsMax,
     setRoomsMax
   }
 
