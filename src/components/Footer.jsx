@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <footer className="p-4">
-            <div className="container flex items-center justify-between mx-auto">
+        <footer>
+            <div className="container flex items-center justify-between mx-auto px-4">
 
                 <div className="flex space-x-4">
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
