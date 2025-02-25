@@ -67,6 +67,8 @@ const storeImmobiliSchema = z.array(z.object({
         .default(),
 
     image_urls: z.array(z.string()).optional(),
+
+    mi_piace: z.number().positive()
 })
 );
 
