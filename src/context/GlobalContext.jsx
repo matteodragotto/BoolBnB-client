@@ -9,6 +9,8 @@ const GlobalProvider = ({ children }) => {
   const api_url = 'http://localhost:3000/'
 
   const [apartments, setApartments] = useState([])
+  const [searchResults, setSearchResults] = useState([])
+  const [searchData, setSearchData] = useState('')
 
   const fetchApartments = () => {
     axios.get(`${api_url}immobili`)
@@ -17,12 +19,28 @@ const GlobalProvider = ({ children }) => {
       })
   }
 
+  const searchApartments = () => {
+    let query = `city=${searchData}`
+
+    axios.get(`${api_url}immobili/search?${query}`)
+      .then(res => {
+        setSearchResults(res.data)
+      })
+      .catch(error => {
+        console.error('Errore nella ricerca:', error);
+      });
+  }
 
 
   const value = {
     apartments,
     setApartments,
-    fetchApartments
+    fetchApartments,
+    searchData,
+    setSearchData,
+    searchResults,
+    setSearchResults,
+    searchApartments
   }
 
   return (
