@@ -4,6 +4,7 @@ import DefaultLayout from "./layouts/DefaultLayout"
 import HomePage from "./pages/HomePage"
 import SearchPage from "./pages/SearchPage"
 import DetailPage from "./pages/DetailPage"
+import AddApartment from "./pages/AddApartment"
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
           <Route Component={DefaultLayout}>
             <Route path="/" Component={HomePage} />
             <Route path="/search" Component={SearchPage} />
+            <Route path="/add" Component={AddApartment} />
             <Route path="/dettaglio-immobile/:id" />
           </Route>
         </Routes>
