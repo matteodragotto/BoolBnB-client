@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import axios from "axios"
+import storeImmobiliSchema from "../validationSchema"
 
 
 const GlobalContext = createContext()
@@ -29,7 +30,20 @@ const GlobalProvider = ({ children }) => {
         setTotalPages(res.data.totalPages)
         setTotalItems(res.data.totalItems)
 
+        const validationResult = storeImmobiliSchema.safeParse(res.data.data);
+
+        if (!validationResult.success) {
+          console.error("Errore nella validazione dei dati:", validationResult.error.format());
+          alert("Errore nel caricamento degli appartamenti. Riprova più tardi.");
+          return;
+        }
+
+        setApartments(validationResult.data);
       })
+
+      .catch(error => {
+        console.error("Errore nel recupero degli immobili:", error);
+      });
   }
 
   const searchApartments = () => {
@@ -42,7 +56,7 @@ const GlobalProvider = ({ children }) => {
 
     axios.get(`${api_url}immobili/search?${query}`)
       .then(res => {
-        setSearchResults(res.data)
+        setSearchResults(res.data);
       })
       .catch(error => {
         console.error('Errore nella ricerca:', error);
