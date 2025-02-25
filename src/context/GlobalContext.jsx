@@ -47,12 +47,14 @@ const GlobalProvider = ({ children }) => {
   }
 
   const searchApartments = () => {
-    let query = `city=${searchData}`
+    let queryParams = { city: searchData };
 
-    if (priceMin) query += `&price_min=${priceMin}`;
-    if (priceMax) query += `&price_max=${priceMax}`;
-    if (roomsMin) query += `&rooms_min=${roomsMin}`;
-    if (roomsMax) query += `&rooms_max=${roomsMax}`;
+    if (priceMin) queryParams.price_min = priceMin;
+    if (priceMax) queryParams.price_max = priceMax;
+    if (roomsMin) queryParams.rooms_min = roomsMin;
+    if (roomsMax) queryParams.rooms_max = roomsMax;
+
+    const query = new URLSearchParams(queryParams).toString();
 
     axios.get(`${api_url}immobili/search?${query}`)
       .then(res => {
@@ -61,7 +63,8 @@ const GlobalProvider = ({ children }) => {
       .catch(error => {
         console.error('Errore nella ricerca:', error);
       });
-  }
+  };
+
 
   const value = {
     apartments,
@@ -72,9 +75,13 @@ const GlobalProvider = ({ children }) => {
     searchResults,
     setSearchResults,
     searchApartments,
+    priceMin,
     setPriceMin,
+    priceMax,
     setPriceMax,
+    roomsMin,
     setRoomsMin,
+    roomsMax,
     setRoomsMax,
     totalPages,
     totalItems,

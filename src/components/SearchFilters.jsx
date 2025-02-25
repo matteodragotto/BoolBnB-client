@@ -1,8 +1,15 @@
+import { useEffect } from "react";
 import { useGlobalContext } from "../context/GlobalContext";
 
 const SearchFilters = () => {
 
   const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments } = useGlobalContext()
+
+  useEffect(() => {
+    searchApartments()
+    console.log(priceMin);
+
+  }, [priceMin, priceMax, roomsMin, roomsMax])
 
   return (
     <div className="flex gap-3 justify-center mt-2">
@@ -50,7 +57,8 @@ const SearchFilters = () => {
         </select>
       </div>
 
-      <button className="p-3 bg-gray-500" onClick={searchApartments()}>Applica Filtri</button>
+
+
     </div>
   )
 }
