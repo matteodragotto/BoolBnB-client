@@ -13,9 +13,11 @@ const GlobalProvider = ({ children }) => {
   const [searchData, setSearchData] = useState('')
 
   const fetchApartments = () => {
-    axios.get(`${api_url}immobili`)
+    axios.get(`${api_url}immobili?page=1`)
       .then(res => {
-        setApartments(res.data)
+        console.log(res.data.data);
+
+        setApartments(res.data.data)
       })
   }
 
