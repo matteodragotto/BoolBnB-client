@@ -8,7 +8,7 @@ const Footer = () => {
         <footer>
             <div className="container flex items-center justify-between mx-auto px-4">
 
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 w-64">
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
                         <FontAwesomeIcon icon={faFacebookF} size="2x" color="white" />
                     </a>
@@ -20,9 +20,12 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <Link to={'/'}>
-                    <img className="p-4" src="./logo.png" alt="Logo" />
-                </Link>
+                <div className='w-64 flex justify-center'>
+                    <Link to={'/'}>
+                        <img className="p-4" src="./logo.png" alt="Logo" />
+                    </Link>
+                </div>
+
 
                 <div className="flex items-center">
                     <Link to="/assistenza">
