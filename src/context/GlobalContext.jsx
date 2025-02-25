@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react"
 import axios from "axios"
 
+
 const GlobalContext = createContext()
 
 
@@ -15,14 +16,19 @@ const GlobalProvider = ({ children }) => {
   const [priceMax, setPriceMax] = useState('');
   const [roomsMin, setRoomsMin] = useState(1);
   const [roomsMax, setRoomsMax] = useState(3);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalItems, setTotalItems] = useState(0)
 
 
-  const fetchApartments = () => {
-    axios.get(`${api_url}immobili?page=1`)
+  const fetchApartments = (page = 1) => {
+    axios.get(`${api_url}immobili?page=${page}`)
       .then(res => {
-        console.log(res.data.data);
+        // console.log(res.data.data);
 
         setApartments(res.data.data)
+        setTotalPages(res.data.totalPages)
+        setTotalItems(res.data.totalItems)
+
       })
   }
 
@@ -55,7 +61,10 @@ const GlobalProvider = ({ children }) => {
     setPriceMin,
     setPriceMax,
     setRoomsMin,
-    setRoomsMax
+    setRoomsMax,
+    totalPages,
+    totalItems,
+    setTotalPages
   }
 
   return (
