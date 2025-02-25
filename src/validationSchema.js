@@ -36,8 +36,9 @@ const searchSchema = z.object({
         .transform(val => (val !== undefined ? Number(val) : undefined)),
 });
 
-// validazione rotta store per immobili
-const storeImmobiliSchema = z.object({
+// validazione per immobili
+const storeImmobiliSchema = z.array(z.object({
+    id: z.number().positive(),
     titolo: z.string()
         .min(2, "Titolo troppo corto")
         .max(100, "Il titolo è troppo lungo")
@@ -98,12 +99,8 @@ const storeImmobiliSchema = z.object({
         })
         .transform(val => (val !== undefined ? Number(val) : undefined)),
 
-    users_id: z.number()
-        .optional()
-        .refine(val => val === undefined || (!isNaN(Number(val)) && Number(val) >= 1), {
-            message: "L'ID deve esssere almeno 1",
-        })
-        .transform(val => (val !== undefined ? Number(val) : undefined)),
-});
+    image_urls: z.array(z.string()).optional(),
+})
+);
 
 export { searchSchema, storeImmobiliSchema };
