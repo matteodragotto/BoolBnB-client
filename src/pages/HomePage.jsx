@@ -36,7 +36,7 @@ const HomePage = () => {
           <ApartmentCards key={apartment.id} apartment={apartment} />
         ))}
       </div >
-      <div className="flex justify-center mb-10 gap-4">
+      <div className="flex justify-center mb-10 gap-4 w-full max-w-[600px] mx-auto">
         {currentPage > 1 && (
           <button
             onClick={prevPage}
