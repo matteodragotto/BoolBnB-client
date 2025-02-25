@@ -16,7 +16,7 @@ const HomePage = () => {
   return (
     <div>
       <SearchBar />
-      <div className="flex flex-wrap gap-4 justify-center mt-10">
+      <div className="flex flex-wrap gap-4 justify-center my-10">
 
         {apartments.map((apartment) => (
           <div key={apartment.id} className='w-80'>
