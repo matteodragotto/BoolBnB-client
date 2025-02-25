@@ -50,9 +50,23 @@ footer {
 }
 
 h1 {
-  color: #918C77;
+  color: white;
 }
 
 .search-button {
   background-color: #708F96;
+}
+
+.bar {
+  background-image: url('./sfondo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+}
+
+.search-position {
+  position: absolute;
+  bottom: -25px;
+  left: 470px;
 }
