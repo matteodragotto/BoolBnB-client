@@ -18,7 +18,8 @@ const GlobalProvider = ({ children }) => {
   const [roomsMin, setRoomsMin] = useState(1);
   const [roomsMax, setRoomsMax] = useState(4);
   const [totalPages, setTotalPages] = useState(1);
-  const [totalItems, setTotalItems] = useState(0)
+  const [totalItems, setTotalItems] = useState(0);
+  const [apartmentDetail, setApartmentDetail] = useState({})
 
 
   const fetchApartments = (page = 1) => {
@@ -66,6 +67,18 @@ const GlobalProvider = ({ children }) => {
       });
   };
 
+  const fetchApartmentDetail = (id) => {
+    axios.get(`${api_url}immobili/${id}`)
+      .then(res => {
+        console.log(res.data);
+
+        setApartmentDetail(res.data);
+      })
+      .catch(error => {
+        console.error('Errore nel dettaglio appartamento:', error);
+      });
+  }
+
 
   const value = {
     apartments,
@@ -86,7 +99,10 @@ const GlobalProvider = ({ children }) => {
     setRoomsMax,
     totalPages,
     totalItems,
-    setTotalPages
+    setTotalPages,
+    fetchApartmentDetail,
+    apartmentDetail,
+    setApartmentDetail
   }
 
   return (
