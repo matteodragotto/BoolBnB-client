@@ -6,13 +6,13 @@ import { FreeMode, Pagination } from 'swiper/modules';
 
 const PrintApartments = ({ images }) => {
 
-  const imageSwiper = images.map((image, index) => <SwiperSlide key={index}><img src={image.url} alt={image} /></SwiperSlide>)
+  const imageSwiper = images.map((image, index) => <SwiperSlide key={index}><img className="max-w-full max-h-full object-contain" src={image.url} alt={image.url} /></SwiperSlide>)
 
   return (
     <>
       <Swiper
         slidesPerView={1}
-        spaceBetween={15}
+        spaceBetween={10}
         freeMode={true}
         autoplay={{
           delay: 3000,
@@ -20,7 +20,20 @@ const PrintApartments = ({ images }) => {
         }}
         pagination={{ clickable: true }}
         modules={[FreeMode, Pagination]}
-        className="apartments-swiper"
+        breakpoints={{
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 60,
+          },
+        }}
       >
         {imageSwiper}
       </Swiper>
