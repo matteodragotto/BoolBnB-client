@@ -1,17 +1,20 @@
 import { useGlobalContext } from "../context/GlobalContext"
 import { useNavigate } from "react-router-dom"
 
+
 const SearchBar = () => {
 
   const navigate = useNavigate()
 
   const { searchApartments, searchData, setSearchData } = useGlobalContext()
 
+
   const handleSubmit = (e) => {
     e.preventDefault()
     searchApartments()
     navigate('/search')
   }
+
 
   return (
     <>
