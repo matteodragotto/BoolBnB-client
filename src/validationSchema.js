@@ -68,7 +68,13 @@ const storeImmobiliSchema = z.array(z.object({
 
     image_urls: z.array(z.string()).optional(),
 
-    mi_piace: z.number().positive()
+    mi_piace: z.number()
+        .optional()
+        .refine(val => val === undefined || (Number(val) >= 0), {
+            message: "Il numero minimo di stanze deve essere almeno 0",
+        })
+        .nullable()
+        .default(),
 })
 );
 
