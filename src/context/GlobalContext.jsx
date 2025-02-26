@@ -41,6 +41,7 @@ const GlobalProvider = ({ children }) => {
 
         setApartments(validationResult.data);
         setSearchData('')
+
       })
 
       .catch(error => {

@@ -75,6 +75,11 @@ const storeImmobiliSchema = z.array(z.object({
         })
         .nullable()
         .default(),
+
+    media_voti: z.string()
+        .regex(/^\d+(\.\d+)?$/, "La media voti deve essere un numero valido")
+        .optional()
+        .default('0'),
 })
 );
 
