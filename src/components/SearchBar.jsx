@@ -16,7 +16,7 @@ const SearchBar = () => {
   return (
     <>
       <div className="space-x-4 p-4 shadow-lg h-100 flex items-center justify-center flex-col bar relative mb-20">
-        <h1 className="text-8xl font-bold pb-4 text-center">CONCEDITI UNA PAUSA CON BOOL B&B</h1>
+        <h1 className="lg:text-8xl text-4xl font-bold pb-4 text-center">CONCEDITI UNA PAUSA CON BOOL B&B</h1>
         <div className="flex items-center search-position">
           <form className="max-w-md flex mx-auto " onSubmit={handleSubmit}>
             <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>

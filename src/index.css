@@ -32,10 +32,6 @@ footer {
     max-height: 150px;
     background: linear-gradient(to right, #AA895F, #708F96);
 
-    img {
-      width: 150px;
-    }
-
     .add-contain {
 
       width: 250px;
