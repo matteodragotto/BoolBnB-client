@@ -16,7 +16,7 @@ const GlobalProvider = ({ children }) => {
   const [priceMin, setPriceMin] = useState('');
   const [priceMax, setPriceMax] = useState('');
   const [roomsMin, setRoomsMin] = useState(1);
-  const [roomsMax, setRoomsMax] = useState(3);
+  const [roomsMax, setRoomsMax] = useState(4);
   const [totalPages, setTotalPages] = useState(1);
   const [totalItems, setTotalItems] = useState(0)
 
