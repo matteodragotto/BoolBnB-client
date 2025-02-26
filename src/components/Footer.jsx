@@ -20,9 +20,9 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <div className='w-64 flex justify-center'>
+                <div className='min-w-[150px] max-w-[150px] flex justify-center'>
                     <Link to={'/'}>
-                        <img className="p-4" src="./logo.png" alt="Logo" />
+                        <img className="p-4 w-full" src="./logo.png" alt="Logo" />
                     </Link>
                 </div>
 
