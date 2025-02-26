@@ -54,7 +54,7 @@ h1 {
 }
 
 .bar {
-  background-image: url('./sfondo.png');
+  background-image: url('/sfondo.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
