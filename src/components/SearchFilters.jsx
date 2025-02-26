@@ -30,7 +30,7 @@ const SearchFilters = () => {
 
   return (
     <div className="flex flex-wrap gap-4 justify-center mt-4 p-4 bg-white shadow-md rounded-lg">
-      <div className="flex flex-col">
+      {/* <div className="flex flex-col">
         <label className="text-sm font-bold text-gray-700 mb-1">Prezzo Minimo:</label>
         <input
           type="number"
@@ -50,10 +50,10 @@ const SearchFilters = () => {
           placeholder="Max €"
           className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-[#AA895F] focus:border-[#AA895F]"
         />
-      </div>
+      </div> */}
 
-      <div className="flex flex-col">
-        <label className="text-sm font-bold text-gray-700 mb-1">Numero Minimo di Stanze:</label>
+      <div className="flex flex-col mt-4">
+        <label className="text-sm font-bold text-gray-700 mb-1">Nr. Min Stanze:</label>
         <select
           value={roomsMin}
           onChange={(e) => setRoomsMin(Number(e.target.value))}
@@ -65,8 +65,8 @@ const SearchFilters = () => {
         </select>
       </div>
 
-      <div className="flex flex-col">
-        <label className="text-sm font-bold text-gray-700 mb-1">Numero Massimo di Stanze:</label>
+      <div className="flex flex-col mt-4">
+        <label className="text-sm font-bold text-gray-700 mb-1">Nr. Max Stanze:</label>
         <select
           value={roomsMax}
           onChange={(e) => setRoomsMax(Number(e.target.value))}
@@ -79,7 +79,7 @@ const SearchFilters = () => {
       </div>
 
       <div className="w-full max-w-md p-4 bg-white shadow-md rounded-lg">
-        <h3 className="text-sm font-semibold text-gray-700 mb-2">Filtra per prezzo</h3>
+        <h3 className="text-sm font-semibold text-gray-700 mb-2">Filtra per prezzo a notte</h3>
         <Slider
           range
           min={10}
