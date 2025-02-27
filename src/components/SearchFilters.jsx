@@ -2,14 +2,13 @@ import { useEffect } from "react";
 import { useGlobalContext } from "../context/GlobalContext";
 import { useState } from "react"
 import "rc-slider/assets/index.css"
-import { set } from "zod"
 import Slider from "rc-slider"
 
 const SearchFilters = () => {
 
   const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments, bedsMin, setBedsMin, type, setType } = useGlobalContext()
 
-  const [range, setRange] = useState([1, 100000])
+  const [range, setRange] = useState([10, 1000])
 
   useEffect(() => {
     searchApartments()
