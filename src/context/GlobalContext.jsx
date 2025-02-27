@@ -17,6 +17,8 @@ const GlobalProvider = ({ children }) => {
   const [priceMax, setPriceMax] = useState('');
   const [roomsMin, setRoomsMin] = useState(1);
   const [roomsMax, setRoomsMax] = useState(4);
+  const [bedsMin, setBedsMin] = useState(1);
+  const [type, setType] = useState('')
   const [totalPages, setTotalPages] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
   const [apartmentDetail, setApartmentDetail] = useState({})
@@ -56,6 +58,8 @@ const GlobalProvider = ({ children }) => {
     if (priceMax) queryParams.price_max = priceMax;
     if (roomsMin) queryParams.rooms_min = roomsMin;
     if (roomsMax) queryParams.rooms_max = roomsMax;
+    if (bedsMin) queryParams.beds_min = bedsMin
+    if (type) queryParams.type = type
 
     const query = new URLSearchParams(queryParams).toString();
 
@@ -98,6 +102,10 @@ const GlobalProvider = ({ children }) => {
     setRoomsMin,
     roomsMax,
     setRoomsMax,
+    bedsMin,
+    setBedsMin,
+    type,
+    setType,
     totalPages,
     totalItems,
     setTotalPages,

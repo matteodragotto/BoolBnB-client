@@ -7,7 +7,7 @@ import Slider from "rc-slider"
 
 const SearchFilters = () => {
 
-  const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments } = useGlobalContext()
+  const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments, bedsMin, setBedsMin, type, setType } = useGlobalContext()
 
   const [range, setRange] = useState([10, 1000])
 
@@ -15,7 +15,7 @@ const SearchFilters = () => {
     searchApartments()
     console.log(priceMin);
 
-  }, [priceMin, priceMax, roomsMin, roomsMax])
+  }, [priceMin, priceMax, roomsMin, roomsMax, bedsMin, type])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -77,6 +77,35 @@ const SearchFilters = () => {
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
+        </select>
+      </div>
+
+      <div className="flex flex-col mt-4">
+        <label className="text-sm font-bold text-gray-700 mb-1">Nr. MIn Letti:</label>
+        <select
+          value={bedsMin}
+          onChange={(e) => setBedsMin(Number(e.target.value))}
+          className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+
+      <div className="flex flex-col mt-4">
+        <label className="text-sm font-bold text-gray-700 mb-1">Tipologia:</label>
+        <select
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
+        >
+          <option value="">Non specificata</option>
+          <option value="Monolocale">Monolocale</option>
+          <option value="Bilocale">Bilocale</option>
+          <option value="Trilocale">Trilocale</option>
+          <option value="Quadrilocale">Quadrilocale</option>
         </select>
       </div>
 
