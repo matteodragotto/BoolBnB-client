@@ -11,9 +11,9 @@ const ApartmentCards = ({ apartment }) => {
     if (location.pathname === '/search') {
       return (
         <div>
-          <p>{apartment.numero_stanze}</p>
-          <p>{apartment.numero_bagni}</p>
-          <p>{apartment.metri_quadri}</p>
+          <p className='text-base font-semibold text-white'>Stanze: {apartment.numero_stanze}</p>
+          <p className='text-base font-semibold text-white'>Bagni: {apartment.numero_bagni} bagni</p>
+          <p className='text-base font-semibold text-white'>m²: {apartment.metri_quadri} </p>
         </div>
       )
 
