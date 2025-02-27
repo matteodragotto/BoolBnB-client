@@ -9,7 +9,7 @@ const SearchFilters = () => {
 
   const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments, bedsMin, setBedsMin, type, setType } = useGlobalContext()
 
-  const [range, setRange] = useState([10, 1000])
+  const [range, setRange] = useState([1, 100000])
 
   useEffect(() => {
     searchApartments()
