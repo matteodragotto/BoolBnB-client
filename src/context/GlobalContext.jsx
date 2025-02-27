@@ -84,6 +84,18 @@ const GlobalProvider = ({ children }) => {
       });
   }
 
+  const addNewApartment = (formData) => {
+    axios.post(`${api_url}immobili`, formData)
+      .then(res => {
+        console.log('Appartmento creato con successo con id:', res.data.apartments_id);
+
+        return res.data.apartments_id
+      })
+      .catch(error => {
+        console.error('Errore nella creazione dell\'appartamento', error);
+      });
+  };
+
 
   const value = {
     apartments,
@@ -111,7 +123,8 @@ const GlobalProvider = ({ children }) => {
     setTotalPages,
     fetchApartmentDetail,
     apartmentDetail,
-    setApartmentDetail
+    setApartmentDetail,
+    addNewApartment
   }
 
   return (
