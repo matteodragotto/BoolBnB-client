@@ -65,7 +65,7 @@ const GlobalProvider = ({ children }) => {
 
     axios.get(`${api_url}immobili/search?${query}`)
       .then(res => {
-        setSearchResults(res.data);
+        setSearchResults(res.data.data);
       })
       .catch(error => {
         console.error('Errore nella ricerca:', error);
