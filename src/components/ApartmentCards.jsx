@@ -3,8 +3,22 @@ import PrintApartments from "../components/PrintApartments"
 import Likes from "../components/Likes"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons"
+import { useLocation } from "react-router-dom"
 
 const ApartmentCards = ({ apartment }) => {
+
+  const searchPageData = () => {
+    if (location.pathname === '/search') {
+      return (
+        <div>
+          <p>{apartment.numero_stanze}</p>
+          <p>{apartment.numero_bagni}</p>
+          <p>{apartment.metri_quadri}</p>
+        </div>
+      )
+
+    }
+  }
 
   return (
     <div key={apartment.id} className='w-80'>
@@ -16,6 +30,7 @@ const ApartmentCards = ({ apartment }) => {
           <p className='text-white'>{apartment.indirizzo_completo.split(',')[1].trim()}</p>
           <p className='text-xl font-semibold text-white'>Prezzo/notte: {apartment.prezzo_notte}€</p>
           <p className='text-lg font-bold text-white absolute top-54 right-2'><FontAwesomeIcon icon={faStarSolid} />{apartment.media_voti}</p>
+          {searchPageData()}
         </Link>
 
       </div>
