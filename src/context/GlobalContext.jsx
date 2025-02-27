@@ -84,17 +84,37 @@ const GlobalProvider = ({ children }) => {
       });
   }
 
-  const addNewApartment = (formData) => {
-    axios.post(`${api_url}immobili`, formData)
-      .then(res => {
-        console.log('Appartmento creato con successo con id:', res.data.apartments_id);
+  const addNewApartment = async (formData, images) => {
+    try {
+      const apartmentResponse = await axios.post(`${api_url}immobili`, formData);
+      const apartmentsId = apartmentResponse.data.apartments_id;
 
-        return res.data.apartments_id
-      })
-      .catch(error => {
-        console.error('Errore nella creazione dell\'appartamento', error);
-      });
+      console.log('Appartamento creato con successo con id:', apartmentsId);
+
+      if (images.length > 0) {
+        const imageFormData = new FormData();
+
+        images.forEach(image => {
+          imageFormData.append('url', image);
+        });
+
+        imageFormData.append('apartments_id', apartmentsId);
+
+        const imageResponse = await axios.post(`${api_url}immobili/immagini`, imageFormData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        console.log('Immagini caricate con successo:', imageResponse.data);
+      }
+
+      return apartmentsId;
+    } catch (error) {
+      console.error('Errore durante la creazione dell\'appartamento e il caricamento delle immagini', error);
+    }
   };
+
 
 
   const value = {

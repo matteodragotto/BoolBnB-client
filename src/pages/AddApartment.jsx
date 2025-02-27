@@ -31,8 +31,14 @@ const AddApartment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addNewApartment(formData)
-    navigate('/')
+    addNewApartment(formData, images)
+      .then(apartmentsId => {
+        console.log('Appartamento creato con id:', apartmentsId);
+        navigate(`/dettaglio-immobile/${apartmentsId}`)
+      })
+      .catch((error) => {
+        console.error('Errore durante la creazione dell\'appartamento', error);
+      });
   };
 
   const handleChange = (e) => {
@@ -43,6 +49,15 @@ const AddApartment = () => {
     });
     console.log(formData);
 
+  };
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);  // Converte la lista di file in un array
+    setImages(files);
+
+    // Mostra le anteprime delle immagini
+    const thumbnailsArray = files.map(file => URL.createObjectURL(file));
+    setThumbnails(thumbnailsArray);
   };
 
   return (
@@ -230,7 +245,7 @@ const AddApartment = () => {
         </div>
 
         <h2>Carica le immagini</h2>
-        {/* <div className="flex flex-wrap gap-4 mb-5 form-group">
+        <div className="flex flex-wrap gap-4 mb-5 form-group">
           <input
             type="file"
             className="form-control my-3"
@@ -241,7 +256,7 @@ const AddApartment = () => {
           {thumbnails.map((thumbnail, index) => (
             <img key={index} src={thumbnail} alt={thumbnail} />
           ))}
-        </div> */}
+        </div>
 
         <button className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full hover:scale-105 transition duration-300 lg:w-64 border border-white cursor-pointer" type="submit">Registra il tuo appartamento</button>
       </form>
