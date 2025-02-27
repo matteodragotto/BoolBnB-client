@@ -61,14 +61,14 @@ const AddApartment = () => {
   };
 
   return (
-    <div>
-      <h2 className="mb-5">Inserisci i dati del tuo appartamento e inizia anche tu il percorso di host!</h2>
+    <div className="text-center">
+      <h2 className="lg:text-8xl text-4xl font-bold pb-6 text-center">INSERISCI IL TUO APPARTAMENTO E INIZIA ANCHE TU IL PERCORSO PER DIVENTARE HOST!</h2>
 
       <form action='#' className="mx-auto " onSubmit={handleSubmit}>
-        <h2>Dati Proprietario</h2>
-        <div className="flex gap-4 mb-5">
+        <h2 className="text-2xl font-bold mb-2">Dati Proprietario</h2>
+        <div className="flex gap-4 justify-center mb-5">
           <div>
-            <label htmlFor="nome" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Nome</label>
+            <label htmlFor="nome" className="mb-2 text-sm font-medium text-gray-900 sr">Nome</label>
             <input
               type="text"
               id="nome"
@@ -80,7 +80,7 @@ const AddApartment = () => {
               onChange={handleChange} />
           </div>
           <div>
-            <label htmlFor="Cognome" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Cognome</label>
+            <label htmlFor="Cognome" className="mb-2 text-sm font-medium text-gray-900 sr">Cognome</label>
             <input
               type="text"
               id="cognome"
@@ -92,7 +92,7 @@ const AddApartment = () => {
               onChange={handleChange} />
           </div>
           <div>
-            <label htmlFor="Telefono" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Cellulare</label>
+            <label htmlFor="Telefono" className="mb-2 text-sm font-medium text-gray-900 sr">Cellulare</label>
             <input
               type="text"
               id="numero_telefono"
@@ -104,12 +104,25 @@ const AddApartment = () => {
               onChange={handleChange} />
           </div>
 
+          <div>
+            <label htmlFor="email" className="mb-2 text-sm font-medium text-gray-900 sr">Email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Email"
+              required
+              value={formData.email}
+              onChange={handleChange} />
+          </div>
+
         </div>
 
-        <h2>Dati Appartamento</h2>
-        <div className="flex flex-wrap gap-4 mb-5">
+        <h2 className="text-2xl font-bold mb-2">Dati Appartamento</h2>
+        <div className="flex flex-wrap gap-4 justify-center mb-5">
           <div>
-            <label htmlFor="titolo" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Titolo</label>
+            <label htmlFor="titolo" className="mb-2 text-sm font-medium text-gray-900 sr">Titolo</label>
             <input
               type="text"
               id="titolo"
@@ -122,20 +135,7 @@ const AddApartment = () => {
           </div>
 
           <div>
-            <label htmlFor="descrizione" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Descrizione</label>
-            <textarea
-              type="text"
-              id="descrizione"
-              name="descrizione"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Descrizione"
-              required
-              value={formData.descrizione}
-              onChange={handleChange} />
-          </div>
-
-          <div>
-            <label htmlFor="numero_stanze" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Numero stanze</label>
+            <label htmlFor="numero_stanze" className="mb-2 text-sm font-medium text-gray-900 sr">Numero stanze</label>
             <input
               type="number"
               id="numero_stanze"
@@ -148,7 +148,7 @@ const AddApartment = () => {
           </div>
 
           <div>
-            <label htmlFor="numero_letti" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Numero letti</label>
+            <label htmlFor="numero_letti" className="mb-2 text-sm font-medium text-gray-900 sr">Numero letti</label>
             <input
               type="number"
               id="numero_letti"
@@ -161,7 +161,7 @@ const AddApartment = () => {
           </div>
 
           <div>
-            <label htmlFor="numero_bagni" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Numero bagni</label>
+            <label htmlFor="numero_bagni" className="mb-2 text-sm font-medium text-gray-900 sr">Numero bagni</label>
             <input
               type="number"
               id="numero_bagni"
@@ -174,7 +174,7 @@ const AddApartment = () => {
           </div>
 
           <div>
-            <label htmlFor="metri_quadri" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Metri quadri</label>
+            <label htmlFor="metri_quadri" className="mb-2 text-sm font-medium text-gray-900 sr">Metri quadri</label>
             <input
               type="number"
               id="metri_quadri"
@@ -187,7 +187,7 @@ const AddApartment = () => {
           </div>
 
           <div>
-            <label htmlFor="indirizzo_completo" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Indirizzo Completo</label>
+            <label htmlFor="indirizzo_completo" className="mb-2 text-sm font-medium text-gray-900 sr">Indirizzo Completo</label>
             <input
               type="text"
               id="indirizzo_completo"
@@ -200,20 +200,7 @@ const AddApartment = () => {
           </div>
 
           <div>
-            <label htmlFor="email" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Email</label>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Email"
-              required
-              value={formData.email}
-              onChange={handleChange} />
-          </div>
-
-          <div>
-            <label htmlFor="tipologia" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Tipologia</label>
+            <label htmlFor="tipologia" className="mb-2 text-sm font-medium text-gray-900 sr">Tipologia</label>
             <select
               type='text'
               id="tipologia"
@@ -231,7 +218,7 @@ const AddApartment = () => {
           </div>
 
           <div>
-            <label htmlFor="prezzo_notte" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Prezzo notte</label>
+            <label htmlFor="prezzo_notte" className="mb-2 text-sm font-medium text-gray-900 sr">Prezzo notte</label>
             <input
               type="number"
               id="prezzo_notte"
@@ -242,23 +229,49 @@ const AddApartment = () => {
               value={formData.prezzo_notte}
               onChange={handleChange} />
           </div>
+
+          <div>
+            <label htmlFor="descrizione" className="mb-2 text-sm font-medium text-gray-900 sr">Descrizione</label>
+            <textarea
+              type="text"
+              id="descrizione"
+              name="descrizione"
+              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Descrizione"
+              required
+              value={formData.descrizione}
+              onChange={handleChange} />
+          </div>
         </div>
 
-        <h2>Carica le immagini</h2>
-        <div className="flex flex-wrap gap-4 mb-5 form-group">
-          <input
-            type="file"
-            className="form-control my-3"
-            name="url"
-            multiple
-            onChange={handleImageChange}
-          />
-          {thumbnails.map((thumbnail, index) => (
-            <img key={index} src={thumbnail} alt={thumbnail} />
-          ))}
+        <h2 className="text-2xl font-bold">Carica le immagini</h2>
+        <div className="flex flex-col justify-center mb-5 form-group">
+          <div className="flex flex-grow justify-center">
+            <input
+              type="file"
+              className="hidden"
+              name="url"
+              multiple
+              onChange={handleImageChange}
+              id="file-input"
+            />
+            <label
+              htmlFor="file-input"
+              className="cursor-pointer bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white rounded-full w-10 h-10 flex justify-center items-center text-2xl my-3 px-10"
+            >
+              +
+            </label>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            {thumbnails.map((thumbnail, index) => (
+              <img className="w-64" key={index} src={thumbnail} alt={thumbnail} />
+            ))}
+          </div>
+
         </div>
 
-        <button className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full hover:scale-105 transition duration-300 lg:w-64 border border-white cursor-pointer" type="submit">Registra il tuo appartamento</button>
+        <button className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full hover:scale-105 transition duration-300 lg:w-64 border border-white cursor-pointer mb-5" type="submit">Registra il tuo appartamento</button>
       </form>
 
     </div>
