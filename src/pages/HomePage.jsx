@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import SearchBar from "../components/SearchBar"
 import ApartmentCards from "../components/ApartmentCards"
 import { useNavigate } from "react-router-dom"
+import PageNumbers from "../components/PageNumbers"
 
 const HomePage = () => {
 
@@ -54,6 +55,8 @@ const HomePage = () => {
             Vai alla prossima pagina
           </button>
         )}
+
+        <PageNumbers currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </div>
     </div>
   )
