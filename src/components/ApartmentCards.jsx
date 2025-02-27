@@ -32,7 +32,7 @@ const ApartmentCards = ({ apartment }) => {
   const ratingColor = 'text-yellow-500'
 
   return (
-    <div key={apartment.id} className='w-full'>
+    <div key={apartment.id} className='w-full max-w-[350px]'>
       <div className='relative border border-gray-500 rounded-lg p-4 text-center shadow-lg hover:shadow-xl bg-gradient-to-r from-[#AA895F] to-[#708F96] transform hover:scale-105 transition duration-300'>
         <Likes apartment={apartment} />
         <PrintApartments images={apartment.image_urls} />

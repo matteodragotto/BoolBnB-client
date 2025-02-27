@@ -3,10 +3,11 @@ import { useGlobalContext } from "../context/GlobalContext";
 import { useState } from "react"
 import "rc-slider/assets/index.css"
 import Slider from "rc-slider"
+import SearchBar from "./SearchBar";
 
 const SearchFilters = () => {
 
-  const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments, bedsMin, setBedsMin, type, setType } = useGlobalContext()
+  const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments, bedsMin, setBedsMin, type, setType, searchData, setSearchData } = useGlobalContext()
 
   const [range, setRange] = useState([10, 1000])
 
@@ -28,7 +29,9 @@ const SearchFilters = () => {
   }
 
   return (
+
     <div className="flex flex-wrap gap-4 justify-center mt-4 p-4 bg-white shadow-md rounded-lg">
+      {/* {SearchBar()} */}
       {/* <div className="flex flex-col">
         <label className="text-sm font-bold text-gray-700 mb-1">Prezzo Minimo:</label>
         <input
@@ -50,56 +53,16 @@ const SearchFilters = () => {
           className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-[#AA895F] focus:border-[#AA895F]"
         />
       </div> */}
-
-      <div className="flex flex-col mt-4">
-        <label className="text-sm font-bold text-gray-700 mb-1">Nr. Min Stanze:</label>
-        <select
-          value={roomsMin}
-          onChange={(e) => setRoomsMin(Number(e.target.value))}
-          className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-      </div>
-
-      <div className="flex flex-col mt-4">
-        <label className="text-sm font-bold text-gray-700 mb-1">Nr. Max Stanze:</label>
-        <select
-          value={roomsMax}
-          onChange={(e) => setRoomsMax(Number(e.target.value))}
-          className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-      </div>
-
-      <div className="flex flex-col mt-4">
-        <label className="text-sm font-bold text-gray-700 mb-1">Nr. MIn Letti:</label>
-        <select
-          value={bedsMin}
-          onChange={(e) => setBedsMin(Number(e.target.value))}
-          className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
-        >
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-      </div>
-
-      <div className="flex flex-col mt-4">
+      <div className="flex flex-col">
         <label className="text-sm font-bold text-gray-700 mb-1">Tipologia:</label>
         <select
           value={type}
           onChange={(e) => setType(e.target.value)}
-          className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
-        >
+          className="w-36 p-2 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
+          style={{
+            backgroundImage: 'linear-gradient(to right, #D0B18D, #A6B8C0)',
+            color: 'black',
+          }}>
           <option value="">Non specificata</option>
           <option value="Monolocale">Monolocale</option>
           <option value="Bilocale">Bilocale</option>
@@ -108,8 +71,61 @@ const SearchFilters = () => {
         </select>
       </div>
 
-      <div className="w-full max-w-md p-4 bg-white shadow-md rounded-lg">
-        <h3 className="text-sm font-semibold text-gray-700 mb-2">Filtra per prezzo a notte</h3>
+      <div className="flex flex-col">
+        <label className="text-sm font-bold text-gray-700 mb-1">Stanze Min:</label>
+        <input
+          value={roomsMin}
+          onChange={(e) => setRoomsMin(Number(e.target.value))}
+          type="number"
+          min={1}
+          max={20}
+          step={1}
+          className="w-19 p-1.5 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
+          style={{
+            backgroundImage: 'linear-gradient(to right, #D0B18D, #A6B8C0)',
+            color: 'black',
+          }}>
+        </input>
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-sm font-bold text-gray-700 mb-1">Stanze Max:</label>
+        <input
+          value={roomsMax}
+          onChange={(e) => setRoomsMax(Number(e.target.value))}
+          type="number"
+          min={1}
+          max={20}
+          step={1}
+          className="w-19 p-1.5 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
+          style={{
+            backgroundImage: 'linear-gradient(to right, #D0B18D, #A6B8C0)',
+            color: 'black',
+          }}>
+        </input>
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-sm font-bold text-gray-700 mb-1">Nr. Letti:</label>
+        <input
+          value={bedsMin}
+          onChange={(e) => setBedsMin(Number(e.target.value))}
+          type="number"
+          min={1}
+          max={20}
+          step={1}
+          className="w-19 p-1.5 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
+          style={{
+            backgroundImage: 'linear-gradient(to right, #D0B18D, #A6B8C0)',
+            color: 'black',
+          }}>
+        </input>
+      </div>
+
+
+      <div className="w-full max-w-md p-4 bg-white shadow-md rounded-lg"
+      >
+        <h3 className="text-sm font-semibold text-gray-700 mb-0">Filtra per prezzo a notte</h3>
         <Slider
           range
           min={10}
