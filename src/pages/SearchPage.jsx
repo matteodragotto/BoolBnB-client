@@ -1,11 +1,18 @@
-import { useGlobalContext } from "../context/GlobalContext"
-import ApartmentCards from "../components/ApartmentCards"
-import SearchFilters from "../components/SearchFilters"
-import SearchBar from "../components/SearchBar"
+import { useGlobalContext } from "../context/GlobalContext";
+import { useState, useEffect } from "react";
+import ApartmentCards from "../components/ApartmentCards";
+import SearchFilters from "../components/SearchFilters";
+import SearchBar from "../components/SearchBar";
+import Pagination from "../components/Pagination";
 
 const SearchPage = () => {
 
-  const { searchResults } = useGlobalContext()
+  const { searchResults, totalPages, searchApartments } = useGlobalContext();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    searchApartments(currentPage);
+  }, [currentPage]);
 
   return (
 
@@ -19,9 +26,9 @@ const SearchPage = () => {
         ))
         }
       </div >
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
     </div>
-
   )
-}
+};
 
-export default SearchPage
+export default SearchPage;
