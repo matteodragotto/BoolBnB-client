@@ -1,34 +1,73 @@
-
 const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
+
+    const getPageNumbers = () => {
+        let pages = [];
+
+        if (totalPages <= 5) {
+
+            pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+        } else {
+            pages.push(1);
+
+            if (currentPage > 3) {
+                pages.push("...");
+            }
+
+            let startPage = Math.max(2, currentPage - 1);
+            let endPage = Math.min(totalPages - 1, currentPage + 1);
+
+            for (let i = startPage; i <= endPage; i++) {
+                pages.push(i);
+            }
+
+            if (currentPage < totalPages - 2) {
+                pages.push("...");
+            }
+
+            pages.push(totalPages);
+        }
+
+        return pages;
+    };
+
     return (
-        <div className="flex items-center justify-center gap-4 my-5">
+        <div className="flex items-center justify-center gap-2 my-5">
             {/* Bottone Previous */}
             <button
                 onClick={() => setCurrentPage(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white px-4 py-2 rounded-full disabled:opacity-50 hover:scale-105 transition duration-300 cursor-pointer"
+                className={`bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white px-4 py-2 rounded-full disabled:opacity-50 hover:scale-105 transition duration-300 ${currentPage === 1 ? "cursor-default" : "cursor-pointer"
+                    }`}
             >
                 ← Prev
             </button>
 
-            {/* Contenitore numeri pagine */}
-            <div className="flex items-center">
-                {[...Array(totalPages)].map((_, i) => (
-                    <button
-                        key={i}
-                        onClick={() => setCurrentPage(i + 1)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition duration-300 cursor-pointer ${currentPage === i + 1 ? "underline" : ""}`}
-                    >
-                        {i + 1}
-                    </button>
-                ))}
+            {/* Numeri di pagina */}
+            <div className="flex items-center gap-1">
+                {getPageNumbers().map((page, i) =>
+                    page === "..." ? (
+                        <span key={i} className="px-1 py-1 text-gray-500">...</span>
+                    ) : (
+                        <button
+                            key={i}
+                            onClick={() => setCurrentPage(page)}
+                            className={`px-2 py-2 text-sm font-medium ${currentPage === page
+                                ? "underline cursor-pointer"
+                                : "cursor-pointer"
+                                }`}
+                        >
+                            {page}
+                        </button>
+                    )
+                )}
             </div>
 
             {/* Bottone Next */}
             <button
                 onClick={() => setCurrentPage(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white px-4 py-2 rounded-full disabled:opacity-50 hover:scale-105 transition duration-300 cursor-pointer"
+                className={`bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white px-4 py-2 rounded-full disabled:opacity-50 hover:scale-105 transition duration-300 ${currentPage === totalPages ? "cursor-default" : "cursor-pointer"
+                    }`}
             >
                 Next →
             </button>
