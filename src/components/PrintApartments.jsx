@@ -6,7 +6,7 @@ import { FreeMode, Pagination } from 'swiper/modules';
 
 const PrintApartments = ({ images }) => {
 
-  const imageSwiper = images.map((image, index) => <SwiperSlide key={index}><img className='h-[150px]' src={image} alt={image} /></SwiperSlide>)
+  const imageSwiper = images.map((image, index) => <SwiperSlide key={index}><img className='h-[150px] w-[250px]' src={image} alt={image} /></SwiperSlide>)
 
 
   return (
