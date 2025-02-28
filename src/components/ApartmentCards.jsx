@@ -38,10 +38,12 @@ const ApartmentCards = ({ apartment }) => {
         <PrintApartments images={apartment.image_urls} />
         <Link to={`/dettaglio-immobile/${apartment.id}`} className='block mt-2'>
           <h3 className='text-lg font-bold text-white'>{apartment.titolo}</h3>
-          <p><div className="flex items-center justify-center mt-2 text-white">
+
+          <div className="flex items-center justify-center mt-2 text-white">
             <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
             <p className="text-sm">{apartment.indirizzo_completo.split(',')[1].trim()}</p>
-          </div></p>
+          </div>
+
           <p className='text-xl font-semibold text-white mt-2'>
             <FontAwesomeIcon icon={faDollarSign} className="mr-2" />
             {apartment.prezzo_notte}€ / notte
