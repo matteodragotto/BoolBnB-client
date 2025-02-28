@@ -66,7 +66,7 @@ const AddApartment = () => {
 
       <form action='#' className="mx-auto " onSubmit={handleSubmit}>
         <h2 className="text-2xl font-bold mb-2">Dati Proprietario</h2>
-        <div className="flex gap-4 justify-center mb-5">
+        <div className="flex flex-wrap gap-4 justify-center mb-5">
           <div>
             <label htmlFor="nome" className="mb-2 text-sm font-medium text-gray-900 sr">Nome</label>
             <input
