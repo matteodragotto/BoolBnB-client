@@ -13,7 +13,6 @@ const SearchFilters = () => {
 
   useEffect(() => {
     searchApartments()
-    console.log(priceMin);
 
   }, [priceMin, priceMax, roomsMin, roomsMax, bedsMin, type])
 
