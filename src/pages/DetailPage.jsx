@@ -16,10 +16,32 @@ const DetailPage = () => {
 
   const { id } = useParams()
 
-  const { fetchApartmentDetail, apartmentDetail } = useGlobalContext()
+  const { fetchApartmentDetail, apartmentDetail, addReview } = useGlobalContext()
+
+  const initialFormReview = {
+    voto: 1,
+    descrizione: '',
+    nome: '',
+    cognome: ''
+  }
 
   const [isOpenContact, setIsOpenContact] = useState(false);
   const [isOpenReviews, setIsOpenReviews] = useState(false);
+  const [formReview, setFormReview] = useState(initialFormReview)
+
+  const handleReviewSubmit = (e) => {
+    e.preventDefault()
+  }
+
+  const handleReviewChange = (e) => {
+    const { value, name } = e.target;
+    setFormReview({
+      ...formReview,
+      [name]: value
+    });
+    console.log(formReview);
+
+  }
 
   const servicesToggle = () => {
     setIsOpen(!isOpen)
@@ -151,19 +173,37 @@ const DetailPage = () => {
                           ✕
                         </button>
                       </div>
-                      <form className="p-4">
+                      <form className="p-4" onSubmit={handleReviewSubmit}>
                         <div className="grid gap-4 mb-4 grid-cols-2">
                           <div className="col-span-2">
                             <label htmlFor="name" className="block text-left mb-2 text-sm font-medium text-gray-900">
                               Nome
                             </label>
-                            <input type="text" id="name" className="w-full p-2 border rounded-lg" placeholder="Inserisci il tuo nome..." required />
+                            <input
+                              type="text"
+                              id="name"
+                              className="w-full p-2 border rounded-lg"
+                              placeholder="Inserisci il tuo nome..."
+                              required
+                              name="nome"
+                              value={formReview.nome}
+                              onChange={handleReviewChange}
+                            />
                           </div>
                           <div className="col-span-2">
                             <label htmlFor="surname" className="block text-left mb-2 text-sm font-medium text-gray-900">
                               Cognome
                             </label>
-                            <input type="text" id="surname" className="w-full p-2 border rounded-lg" placeholder="Inserisci il tuo cognome..." required />
+                            <input
+                              type="text"
+                              id="surname"
+                              className="w-full p-2 border rounded-lg"
+                              placeholder="Inserisci il tuo cognome..."
+                              required
+                              name="cognome"
+                              value={formReview.cognome}
+                              onChange={handleReviewChange}
+                            />
                           </div>
                           <div className="col-span-2 sm:col-span-1">
                             <label htmlFor="vote" className="block text-left mb-2 text-sm font-medium text-gray-900">
@@ -175,17 +215,29 @@ const DetailPage = () => {
                               placeholder="1-5"
                               min="1"
                               max="5"
-                              required />
+                              required
+                              name="voto"
+                              value={formReview.voto}
+                              onChange={handleReviewChange}
+                            />
                           </div>
                           <div className="col-span-2">
                             <label htmlFor="description" className="block text-left mb-2 text-sm font-medium text-gray-900">
                               Descrizione
                             </label>
-                            <textarea id="description" rows="4" className="w-full p-2 border rounded-lg" placeholder="Scrivi la tua esperienza..."></textarea>
+                            <textarea
+                              id="description"
+                              rows="4"
+                              className="w-full p-2 border rounded-lg"
+                              placeholder="Scrivi la tua esperienza..."
+                              name="descrizione"
+                              value={formReview.descrizione}
+                              onChange={handleReviewChange}
+                            ></textarea>
                           </div>
                         </div>
 
-                        <button type="submit" className="w-full bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full hover:scale-105 transition duration-300 lg:w-64 border border-white cursor-pointer">
+                        <button type="submit" onClick={() => addReview(id, formReview)} className="w-full bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full hover:scale-105 transition duration-300 lg:w-64 border border-white cursor-pointer">
                           Aggiungi recensione
                         </button>
                       </form>

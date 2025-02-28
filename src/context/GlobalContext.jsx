@@ -116,6 +116,16 @@ const GlobalProvider = ({ children }) => {
     }
   };
 
+  const addReview = (id, reviewData) => {
+    axios.post(`${api_url}immobili/${id}/recensioni`, reviewData)
+      .then(res => {
+        console.log('Recensione aggiunta con successo');
+      })
+      .catch(error => {
+        console.error('Errore nel caricamento della recensione:', error);
+      });
+  }
+
   const value = {
     apartments,
     setApartments,
@@ -143,7 +153,8 @@ const GlobalProvider = ({ children }) => {
     fetchApartmentDetail,
     apartmentDetail,
     setApartmentDetail,
-    addNewApartment
+    addNewApartment,
+    addReview
   }
 
   return (
