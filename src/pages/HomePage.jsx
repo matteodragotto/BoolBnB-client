@@ -34,7 +34,7 @@ const HomePage = () => {
       <div className="flex flex-wrap justify-center gap-8 my-10 mx-auto px-4">
 
         {apartments.map((apartment) => (
-          <div key={apartment.id} className="flex justify-center w-full sm:w-3/4 md:w-1/3 lg:w-1/5 xl:w-1/6">
+          <div key={apartment.id} className="flex justify-center w-full sm:w-3/4 md:w-1/3 lg:w-1/5">
             <ApartmentCards apartment={apartment} />
           </div>
         ))}
