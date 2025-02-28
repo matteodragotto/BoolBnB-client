@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
     return (
         <footer className="bg-gradient-to-r from-[rgb(170,137,95)] to-[rgb(112,143,150)] text-white">
-            <div className="container mx-auto max-w-full py-2 flex justify-between items-center">
+            <div className="container mx-auto max-w-full py-2 px-4 flex justify-between items-center">
                 <div className="flex space-x-4 lg:w-64">
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="transition transform duration-300 hover:scale-110">
                         <FontAwesomeIcon icon={faFacebookF} color="white" className='lg:text-3xl text-2xl hover:text-[rgb(98,137,146)]' />
