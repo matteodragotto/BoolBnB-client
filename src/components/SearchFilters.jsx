@@ -11,8 +11,8 @@ const SearchFilters = () => {
   let typesArray = [];
   let pricesArray = []
 
-  const typesListGeneration = apartments?.map(apartment => apartment.tipologia);
-  const pricesListGeneration = apartments?.map(apartment => Number(apartment.prezzo_notte));
+  const typesListGeneration = apartments.map(apartment => apartment.tipologia);
+  const pricesListGeneration = apartments.map(apartment => Number(apartment?.prezzo_notte));
 
   typesArray = [...new Set(typesListGeneration)];
   pricesArray = [...new Set(pricesListGeneration)];
@@ -23,19 +23,13 @@ const SearchFilters = () => {
   const [range, setRange] = useState([minPrice, maxPrice])
 
   useEffect(() => {
-    fetchApartments()
     searchApartments()
   }, [priceMin, priceMax, roomsMin, roomsMax, bedsMin, type, minPrice, maxPrice])
 
   useEffect(() => {
-    if (apartments && apartments.length > 0) {
-      const pricesListGeneration = apartments.map(apartment => Number(apartment.prezzo_notte));
-      const pricesArray = [...new Set(pricesListGeneration)];
-      const minPrice = Math.min(...pricesArray);
-      const maxPrice = Math.max(...pricesArray);
-      setRange([minPrice, maxPrice]);
-    }
-  }, [apartments]);
+    fetchApartments()
+    setRange([minPrice, maxPrice])
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
