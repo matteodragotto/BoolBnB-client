@@ -51,8 +51,8 @@ const GlobalProvider = ({ children }) => {
       });
   }
 
-  const searchApartments = () => {
-    let queryParams = { city: searchData };
+  const searchApartments = (page = 1) => {
+    let queryParams = { city: searchData, page, limit: 20 };
 
     if (priceMin) queryParams.price_min = priceMin;
     if (priceMax) queryParams.price_max = priceMax;
@@ -66,6 +66,7 @@ const GlobalProvider = ({ children }) => {
     axios.get(`${api_url}immobili/search?${query}`)
       .then(res => {
         setSearchResults(res.data.data);
+        setTotalPages(res.data.totalPages);
       })
       .catch(error => {
         console.error('Errore nella ricerca:', error);
