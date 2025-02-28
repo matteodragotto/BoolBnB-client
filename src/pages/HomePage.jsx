@@ -2,14 +2,12 @@ import { useGlobalContext } from "../context/GlobalContext"
 import { useEffect, useState } from "react"
 import SearchBar from "../components/SearchBar"
 import ApartmentCards from "../components/ApartmentCards"
-import { useNavigate } from "react-router-dom"
 import PageNumbers from "../components/PageNumbers"
 
 const HomePage = () => {
 
   const { fetchApartments, apartments, totalPages } = useGlobalContext()
   const [currentPage, setCurrentPage] = useState(1)
-  const navigate = useNavigate()
 
   useEffect(() => {
     fetchApartments(currentPage)
@@ -24,7 +22,7 @@ const HomePage = () => {
 
   const prevPage = () => {
     if (currentPage > 1) {
-      setCurrentPage(prevPage => prevPage - 1)  // Decrementa la pagina
+      setCurrentPage(prevPage => prevPage - 1)
     }
   }
 
@@ -56,7 +54,7 @@ const HomePage = () => {
           </button>
         )}
 
-        <PageNumbers currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        <PageNumbers currentPage={currentPage} setCurrentPage={setCurrentPage} pages={currentPage} />
       </div>
     </div>
   )
