@@ -115,8 +115,6 @@ const GlobalProvider = ({ children }) => {
     }
   };
 
-
-
   const value = {
     apartments,
     setApartments,
