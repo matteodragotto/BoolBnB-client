@@ -3,19 +3,39 @@ import { useGlobalContext } from "../context/GlobalContext";
 import { useState } from "react"
 import "rc-slider/assets/index.css"
 import Slider from "rc-slider"
-import SearchBar from "./SearchBar";
 
 const SearchFilters = () => {
 
-  const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments, bedsMin, setBedsMin, type, setType, searchData, setSearchData } = useGlobalContext()
+  const { priceMin, setPriceMin, priceMax, setPriceMax, roomsMin, setRoomsMin, roomsMax, setRoomsMax, searchApartments, bedsMin, setBedsMin, type, setType, apartments, fetchApartments } = useGlobalContext()
 
-  const [range, setRange] = useState([10, 1000])
+  let typesArray = [];
+  let pricesArray = []
+
+  const typesListGeneration = apartments?.map(apartment => apartment.tipologia);
+  const pricesListGeneration = apartments?.map(apartment => Number(apartment.prezzo_notte));
+
+  typesArray = [...new Set(typesListGeneration)];
+  pricesArray = [...new Set(pricesListGeneration)];
+
+  const minPrice = Math.min(...pricesArray)
+  const maxPrice = Math.max(...pricesArray)
+
+  const [range, setRange] = useState([minPrice, maxPrice])
 
   useEffect(() => {
+    fetchApartments()
     searchApartments()
-    console.log(priceMin);
+  }, [priceMin, priceMax, roomsMin, roomsMax, bedsMin, type, minPrice, maxPrice])
 
-  }, [priceMin, priceMax, roomsMin, roomsMax, bedsMin, type])
+  useEffect(() => {
+    if (apartments && apartments.length > 0) {
+      const pricesListGeneration = apartments.map(apartment => Number(apartment.prezzo_notte));
+      const pricesArray = [...new Set(pricesListGeneration)];
+      const minPrice = Math.min(...pricesArray);
+      const maxPrice = Math.max(...pricesArray);
+      setRange([minPrice, maxPrice]);
+    }
+  }, [apartments]);
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -31,28 +51,7 @@ const SearchFilters = () => {
   return (
 
     <div className="flex flex-wrap gap-4 justify-center mt-4 p-4 bg-white shadow-md rounded-lg">
-      {/* {SearchBar()} */}
-      {/* <div className="flex flex-col">
-        <label className="text-sm font-bold text-gray-700 mb-1">Prezzo Minimo:</label>
-        <input
-          type="number"
-          value={priceMin}
-          onChange={(e) => setPriceMin(e.target.value)}
-          placeholder="Min €"
-          className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-[#AA895F] focus:border-[#AA895F]"
-        />
-      </div>
 
-      <div className="flex flex-col">
-        <label className="text-sm font-bold text-gray-700 mb-1">Prezzo Massimo:</label>
-        <input
-          type="number"
-          value={priceMax}
-          onChange={(e) => setPriceMax(e.target.value)}
-          placeholder="Max €"
-          className="w-32 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-[#AA895F] focus:border-[#AA895F]"
-        />
-      </div> */}
       <div className="flex flex-col">
         <label className="text-sm font-bold text-gray-700 mb-1">Tipologia:</label>
         <select
@@ -64,10 +63,9 @@ const SearchFilters = () => {
             color: 'black',
           }}>
           <option value="">Non specificata</option>
-          <option value="Monolocale">Monolocale</option>
-          <option value="Bilocale">Bilocale</option>
-          <option value="Trilocale">Trilocale</option>
-          <option value="Quadrilocale">Quadrilocale</option>
+          {typesArray.map((types, index) => (
+            <option key={index} value={types}>{types}</option>
+          ))}
         </select>
       </div>
 
@@ -128,8 +126,8 @@ const SearchFilters = () => {
         <h3 className="text-sm font-semibold text-gray-700 mb-0">Filtra per prezzo a notte</h3>
         <Slider
           range
-          min={10}
-          max={1000}
+          min={minPrice}
+          max={maxPrice}
           step={10}
           value={range}
           onChange={handleRange}
@@ -140,9 +138,6 @@ const SearchFilters = () => {
           <span>{range[1]}€</span>
         </div>
       </div>
-
-
-
 
     </div>
   )

@@ -4,7 +4,7 @@ import { useGlobalContext } from "../context/GlobalContext"
 
 const AddApartment = () => {
 
-  const { addNewApartment } = useGlobalContext()
+  const { addNewApartment, apartments } = useGlobalContext()
 
   const navigate = useNavigate()
 
@@ -27,6 +27,13 @@ const AddApartment = () => {
   const [formData, setFormData] = useState(initialFormData)
   const [thumbnails, setThumbnails] = useState([])
   const [images, setImages] = useState([])
+
+  let typesArray = [];
+
+  const typesListGeneration = apartments?.map(apartment => apartment.tipologia);
+
+  typesArray = [...new Set(typesListGeneration)];
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -210,10 +217,9 @@ const AddApartment = () => {
               value={formData.tipologia}
               onChange={handleChange}
             >
-              <option value="Monolocale">Monolocale</option>
-              <option value="Bilocale">Bilocale</option>
-              <option value="Trilocale">Trilocale</option>
-              <option value="Quadrilocale">Quadrilocale</option>
+              {typesArray.map((types, index) => (
+                <option key={index} value={types}>{types}</option>
+              ))}
             </select>
           </div>
 
