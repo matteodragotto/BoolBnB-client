@@ -1,6 +1,21 @@
 @import "tailwindcss";
 
+/* <weight>: Use a value from 300 to 700 */
+/* <uniquifier>: Use a unique and descriptive class name */
+
+.jura {
+  font-family: "Jura", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
 header {
+
+  font-family: "Jura", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 
   .container {
     max-width: 100%;
@@ -24,8 +39,20 @@ header {
   }
 }
 
+main {
+  font-family: "Jura", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 
 footer {
+
+  font-family: "Jura", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 
   .container {
     max-width: 100%;
@@ -67,7 +94,7 @@ h1 {
 }
 
 
-
+/* SearchPage Price Slider */
 
 .style-slider .rc-slider-rail {
   background-color: transparent;

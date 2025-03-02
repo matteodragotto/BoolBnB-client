@@ -51,6 +51,9 @@ const DetailPage = () => {
     fetchApartmentDetail(id)
   }, [id])
 
+  const getBorderClass = (index) => {
+    return index % 2 === 0 ? 'border-[#AA895F]' : 'border-[#708F96]';
+  };
 
   return (
     <div>
@@ -248,14 +251,20 @@ const DetailPage = () => {
             </div>
 
           </div>
-          <div className="flex flex-wrap gap-2">
-            <ul className="text-left p-2 w-[30%] border border-gradient-to-r from-[#AA895F] to-[#708F96] rounded-lg mt-2">{apartmentDetail.reviews ? (apartmentDetail.reviews.map((review, index) => (
-              <li key={index}>
-                <p className="font-bold">{review.nome} {review.cognome}</p>
-                <StarReviews vote={review.voto} />
-                <p>{review.descrizione}</p>
-              </li>
-            ))) : (<p>Loading...</p>)}</ul>
+
+          <div>
+            <ul className="text-left w-full p-2 mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+              {apartmentDetail?.reviews ? (apartmentDetail.reviews.map((review, index) => {
+                const borderClass = getBorderClass(index);
+
+                return (
+                  <li key={index} className={`p-3 border border-2 ${borderClass} rounded-lg`}>
+                    <p className="font-bold">{review.nome} {review.cognome}</p>
+                    <StarReviews vote={review.voto} />
+                    <p>{review.descrizione}</p>
+                  </li>
+                )
+              })) : (<p>Loading...</p>)}</ul>
           </div>
 
         </div>
