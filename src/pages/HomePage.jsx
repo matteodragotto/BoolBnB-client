@@ -9,6 +9,8 @@ const HomePage = () => {
   const { fetchApartments, apartments, totalPages } = useGlobalContext()
   const [currentPage, setCurrentPage] = useState(1)
 
+  const hasResult = apartments && apartments.length > 0;
+
   useEffect(() => {
     fetchApartments(currentPage)
   }, [currentPage])
@@ -25,7 +27,7 @@ const HomePage = () => {
         ))}
       </div >
       <div className="flex justify-center mb-10 gap-4 w-full max-w-[600px] mx-auto">
-        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} hasResult={hasResult} />
       </div>
     </div>
   )

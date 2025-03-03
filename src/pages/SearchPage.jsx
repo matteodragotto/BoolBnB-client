@@ -7,8 +7,11 @@ import Pagination from "../components/Pagination";
 
 const SearchPage = () => {
 
+
   const { searchResults, totalPages, searchApartments } = useGlobalContext();
   const [currentPage, setCurrentPage] = useState(1);
+
+  const hasResults = searchResults && searchResults.length > 0;
 
   useEffect(() => {
     searchApartments(currentPage);
@@ -31,7 +34,7 @@ const SearchPage = () => {
         ))
         }
       </div >
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} hasResults={hasResults} />
     </div>
   )
 };
