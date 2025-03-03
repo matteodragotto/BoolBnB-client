@@ -258,7 +258,7 @@ const DetailPage = () => {
                 const borderClass = getBorderClass(index);
 
                 return (
-                  <li key={index} className={`p-3 border border-2 ${borderClass} rounded-lg`}>
+                  <li key={index} className={`p-3 border-2 ${borderClass} rounded-lg`}>
                     <p className="font-bold">{review.nome} {review.cognome}</p>
                     <StarReviews vote={review.voto} />
                     <p>{review.descrizione}</p>

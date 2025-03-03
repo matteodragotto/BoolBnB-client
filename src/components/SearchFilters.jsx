@@ -51,7 +51,7 @@ const SearchFilters = () => {
         <select
           value={type}
           onChange={(e) => setType(e.target.value)}
-          className="w-full max-w-xs w-36 p-2 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
+          className="w-full max-w-xs p-2 border border-gray-300 rounded-lg shadow-sm bg-white focus:ring-[#AA895F] focus:border-[#AA895F]"
           style={{
             backgroundImage: 'linear-gradient(to right, #D0B18D, #A6B8C0)',
             color: 'black',
