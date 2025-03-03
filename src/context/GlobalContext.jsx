@@ -44,7 +44,6 @@ const GlobalProvider = ({ children }) => {
         }
 
         setApartments(validationResult.data);
-        setSearchData('')
 
       })
 
