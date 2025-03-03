@@ -4,7 +4,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages, hasResult }) => {
 
         let pages = [];
 
-        if (totalPages <= 4) {
+        if (totalPages <= 5) {
 
             pages = Array.from({ length: totalPages }, (_, i) => i + 1);
         } else {

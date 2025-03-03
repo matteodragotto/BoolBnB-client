@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import { useState, useEffect } from "react";
 import ApartmentCards from "../components/ApartmentCards";
@@ -11,7 +12,23 @@ const SearchPage = () => {
   const { searchResults, totalPages, searchApartments } = useGlobalContext();
   const [currentPage, setCurrentPage] = useState(1);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const page = params.get("page");
+    if (page) {
+      setCurrentPage(parseInt(page, 10));
+    }
+  }, [location]);
+
   const hasResults = searchResults && searchResults.length > 0;
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    navigate(`?page=${newPage}`);
+  };
 
   useEffect(() => {
     searchApartments(currentPage);
@@ -34,7 +51,7 @@ const SearchPage = () => {
         ))
         }
       </div >
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} hasResults={hasResults} />
+      <Pagination currentPage={currentPage} setCurrentPage={handlePageChange} totalPages={totalPages} hasResults={hasResults} />
     </div>
   )
 };
