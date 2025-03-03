@@ -8,6 +8,7 @@ import AddApartment from "./pages/AddApartment"
 import Assistenza from "./pages/Assistenza"
 import Privacy from "./pages/PrivacyPolicy"
 import Termini from "./pages/Termini"
+import ChiSiamo from "./pages/ChiSiamo"
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/assistenza" Component={Assistenza} />
             <Route path="/privacy" Component={Privacy} />
             <Route path="/termini" Component={Termini} />
+            <Route path="/chisiamo" Component={ChiSiamo} />
           </Route>
         </Routes>
       </BrowserRouter>
