@@ -7,6 +7,7 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons"
 import { faCaretUp } from "@fortawesome/free-solid-svg-icons"
 import StarReviews from "../components/StarReviews"
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons"
+import React from "react"
 
 
 
@@ -142,8 +143,11 @@ const DetailPage = () => {
         <div className="flex mt-10 border-t border-b">
           <div className="py-4">
             <p className="text-2xl font-bold">Cosa troverai</p>
-            <ul>{apartmentDetail.services_list ? (apartmentDetail.services_list.map((service, index) => (
-              <li key={index}>{service}</li>
+            <ul className="flex flex-wrap gap-4">{apartmentDetail.services_list ? (apartmentDetail.services_list.map((service, index) => (
+              <React.Fragment key={index}>
+                <li>{service}</li>
+                {index < apartmentDetail.services_list.length - 1 && <span>-</span>}
+              </React.Fragment>
             ))) : (<p>Loading...</p>)}</ul>
           </div>
         </div>
