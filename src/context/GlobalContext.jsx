@@ -22,6 +22,8 @@ const GlobalProvider = ({ children }) => {
   const [totalPages, setTotalPages] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
   const [apartmentDetail, setApartmentDetail] = useState({})
+  const [services, setServices] = useState([])
+  const [selectedServices, setSelectedServices] = useState([])
 
 
   const fetchApartments = (page = 1) => {
@@ -85,7 +87,7 @@ const GlobalProvider = ({ children }) => {
       });
   }
 
-  const addNewApartment = async (formData, images) => {
+  const addNewApartment = async (formData, images, selectedServices) => {
     try {
       const apartmentResponse = await axios.post(`${api_url}immobili`, formData);
       const apartmentsId = apartmentResponse.data.apartments_id;
@@ -110,6 +112,12 @@ const GlobalProvider = ({ children }) => {
         console.log('Immagini caricate con successo:', imageResponse.data);
       }
 
+      if (selectedServices.length > 0) {
+        const servicesResponse = await axios.post(`${api_url}immobili/${apartmentsId}/services`, { service_ids: selectedServices });
+
+        console.log('Servizi associati all\'appartamento con successo:', servicesResponse.data);
+      }
+
       return apartmentsId;
     } catch (error) {
       console.error('Errore durante la creazione dell\'appartamento e il caricamento delle immagini', error);
@@ -123,6 +131,16 @@ const GlobalProvider = ({ children }) => {
       })
       .catch(error => {
         console.error('Errore nel caricamento della recensione:', error);
+      });
+  }
+
+  const fetchServices = () => {
+    axios.get(`${api_url}immobili/services`)
+      .then(res => {
+        setServices(res.data)
+      })
+      .catch(error => {
+        console.error('Errore nel caricamento dei servizi:', error);
       });
   }
 
@@ -154,7 +172,12 @@ const GlobalProvider = ({ children }) => {
     apartmentDetail,
     setApartmentDetail,
     addNewApartment,
-    addReview
+    addReview,
+    fetchServices,
+    services,
+    setServices,
+    selectedServices,
+    setSelectedServices
   }
 
   return (

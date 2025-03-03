@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useGlobalContext } from "../context/GlobalContext"
 
 const AddApartment = () => {
 
-  const { addNewApartment, apartments } = useGlobalContext()
+  const { addNewApartment, apartments, fetchApartments, services, selectedServices, setSelectedServices, fetchServices } = useGlobalContext()
 
   const navigate = useNavigate()
 
@@ -30,7 +30,7 @@ const AddApartment = () => {
 
   let typesArray = [];
 
-  const typesListGeneration = apartments?.map(apartment => apartment.tipologia);
+  const typesListGeneration = apartments.map(apartment => apartment.tipologia);
 
   typesArray = [...new Set(typesListGeneration)];
 
@@ -38,7 +38,7 @@ const AddApartment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addNewApartment(formData, images)
+    addNewApartment(formData, images, selectedServices)
       .then(apartmentsId => {
         console.log('Appartamento creato con id:', apartmentsId);
         navigate(`/dettaglio-immobile/${apartmentsId}`)
@@ -59,13 +59,29 @@ const AddApartment = () => {
   };
 
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);  // Converte la lista di file in un array
+    const files = Array.from(e.target.files);
     setImages(files);
 
-    // Mostra le anteprime delle immagini
     const thumbnailsArray = files.map(file => URL.createObjectURL(file));
     setThumbnails(thumbnailsArray);
   };
+
+  const handleCheckboxChange = (e, id) => {
+    if (e.target.checked) {
+
+      setSelectedServices((prevSelected) => [...prevSelected, id]);
+    } else {
+
+      setSelectedServices((prevSelected) =>
+        prevSelected.filter((selectedId) => selectedId !== id)
+      );
+    }
+  };
+
+  useEffect(() => {
+    fetchApartments()
+    fetchServices()
+  }, [])
 
   return (
     <div className="text-center">
@@ -209,7 +225,6 @@ const AddApartment = () => {
           <div>
             <label htmlFor="tipologia" className="mb-2 text-sm font-medium text-gray-900 sr">Tipologia</label>
             <select
-              type='text'
               id="tipologia"
               name="tipologia"
               className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -248,6 +263,20 @@ const AddApartment = () => {
               value={formData.descrizione}
               onChange={handleChange} />
           </div>
+        </div>
+
+        <h2>Seleziona i servizi offerti</h2>
+        <div>
+          {services.map(service => (
+            <div key={service.id}>
+              <input
+                type="checkbox"
+                id={`checkbox-${service.id}`}
+                onChange={(e) => handleCheckboxChange(e, service.id)}
+              />
+              <label htmlFor={`checkbox-${service.id}`}>{service.nome_servizio}</label>
+            </div>
+          ))}
         </div>
 
         <h2 className="text-2xl font-bold">Carica le immagini</h2>
