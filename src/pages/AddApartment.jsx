@@ -265,8 +265,8 @@ const AddApartment = () => {
           </div>
         </div>
 
-        <h2>Seleziona i servizi offerti</h2>
-        <div>
+        <h2 className="text-2xl font-bold">Seleziona i servizi offerti</h2>
+        <div className="border rounded-sm mx-10 my-5 grid grid-cols-2 lg:grid-cols-5 p-4 gap-4">
           {services.map(service => (
             <div key={service.id}>
               <input
