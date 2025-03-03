@@ -35,7 +35,7 @@ const Footer = () => {
             <div className="border-t border-gray-300 pt-3 pb-2 bg-gradient-to-r from-[rgb(170,137,95)] to-[rgb(112,143,150)]">
                 <div className="flex justify-center space-x-8">
                     <Link to="/chi-siamo" className="text-white text-sm hover:text-[rgb(98,137,146)] transition duration-300">Chi siamo</Link>
-                    <Link to="/termini-e-condizioni" className="text-white text-sm hover:text-[rgb(98,137,146)] transition duration-300">Termini e condizioni</Link>
+                    <Link to="/termini" className="text-white text-sm hover:text-[rgb(98,137,146)] transition duration-300">Termini e condizioni</Link>
                     <Link to="/privacy" className="text-white text-sm hover:text-[rgb(98,137,146)] transition duration-300">Privacy policy</Link>
                 </div>
 

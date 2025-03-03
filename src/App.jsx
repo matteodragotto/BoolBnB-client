@@ -7,6 +7,7 @@ import DetailPage from "./pages/DetailPage"
 import AddApartment from "./pages/AddApartment"
 import Assistenza from "./pages/Assistenza"
 import Privacy from "./pages/PrivacyPolicy"
+import Termini from "./pages/Termini"
 
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/dettaglio-immobile/:id" />
             <Route path="/assistenza" Component={Assistenza} />
             <Route path="/privacy" Component={Privacy} />
+            <Route path="/termini" Component={Termini} />
           </Route>
         </Routes>
       </BrowserRouter>
