@@ -45,6 +45,8 @@ const SearchPage = () => {
         </p>
       </div>
 
+      {searchResults.length === 0 && <p className="text-center text-lg font-bold text-gray-600">Loading....</p>}
+
       <div className="flex flex-wrap gap-4 justify-center my-10">
         {searchResults.map(apartment => (
           <ApartmentCards key={apartment.id} apartment={apartment} />
