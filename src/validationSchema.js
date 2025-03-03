@@ -76,10 +76,13 @@ const storeImmobiliSchema = z.array(z.object({
         .nullable()
         .default(),
 
-    media_voti: z.string()
-        .regex(/^\d+(\.\d+)?$/, "La media voti deve essere un numero valido")
+    media_voti: z.number()
         .optional()
-        .default('0'),
+        .refine(val => val === undefined || (Number(val) >= 0), {
+            message: "Il numero minimo di stanze deve essere almeno 0",
+        })
+        .nullable()
+        .default(),
 })
 );
 
