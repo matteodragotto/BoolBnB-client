@@ -2,6 +2,7 @@ import { z } from "zod";
 
 const storeImmobiliSchema = z.array(z.object({
     id: z.number().positive(),
+
     titolo: z.string()
         .min(2, "Titolo troppo corto")
         .max(100, "Il titolo è troppo lungo")
@@ -13,36 +14,36 @@ const storeImmobiliSchema = z.array(z.object({
         .optional(),
 
     numero_stanze: z.number()
+        .nullable()
         .optional()
-        .refine(val => val === undefined || (Number(val) >= 1), {
+        .refine(val => val === undefined || val >= 1, {
             message: "Il numero minimo di stanze deve essere almeno 1",
         })
-        .nullable()
-        .default(),
+        .default(null),
 
     numero_letti: z.number()
-        .optional()
-        .refine(val => val === undefined || (Number(val) >= 1), {
-            message: "Il numero minimo di stanze deve essere almeno 1",
-        })
         .nullable()
-        .default(),
+        .optional()
+        .refine(val => val === undefined || val >= 1, {
+            message: "Il numero minimo di letti deve essere almeno 1",
+        })
+        .default(null),
 
     numero_bagni: z.number()
-        .optional()
-        .refine(val => val === undefined || (Number(val) >= 1), {
-            message: "Il numero minimo di stanze deve essere almeno 1",
-        })
         .nullable()
-        .default(),
+        .optional()
+        .refine(val => val === undefined || val >= 1, {
+            message: "Il numero minimo di bagni deve essere almeno 1",
+        })
+        .default(null),
 
     metri_quadri: z.number()
-        .optional()
-        .refine(val => val === undefined || (Number(val) >= 1), {
-            message: "Il numero minimo di stanze deve essere almeno 1",
-        })
         .nullable()
-        .default(),
+        .optional()
+        .refine(val => val === undefined || val >= 1, {
+            message: "I metri quadri devono essere almeno 1",
+        })
+        .default(null),
 
     indirizzo_completo: z.string()
         .min(2, "Indirizzo troppo corto")
@@ -50,7 +51,7 @@ const storeImmobiliSchema = z.array(z.object({
         .optional(),
 
     email: z.string()
-        .email()
+        .email("L'email non è valida")
         .optional(),
 
     tipologia: z.string()
@@ -59,31 +60,30 @@ const storeImmobiliSchema = z.array(z.object({
         .optional(),
 
     prezzo_notte: z.number()
-        .optional()
-        .refine(val => val === undefined || (Number(val) >= 1), {
-            message: "Il numero minimo di stanze deve essere almeno 1",
-        })
         .nullable()
-        .default(),
+        .optional()
+        .refine(val => val === undefined || val >= 1, {
+            message: "Il prezzo per notte deve essere almeno 1",
+        })
+        .default(null),
 
     image_urls: z.array(z.string()).optional(),
 
     mi_piace: z.number()
-        .optional()
-        .refine(val => val === undefined || (Number(val) >= 0), {
-            message: "Il numero minimo di stanze deve essere almeno 0",
-        })
         .nullable()
-        .default(),
+        .optional()
+        .refine(val => val === undefined || val >= 0, {
+            message: "Il numero di mi piace non può essere negativo",
+        })
+        .default(0),
 
     media_voti: z.number()
-        .optional()
-        .refine(val => val === undefined || (Number(val) >= 0), {
-            message: "Il numero minimo di stanze deve essere almeno 0",
-        })
         .nullable()
-        .default(),
-})
-);
+        .optional()
+        .refine(val => val === undefined || val >= 0, {
+            message: "La media dei voti non può essere negativa",
+        })
+        .default(0),
+}));
 
 export default storeImmobiliSchema;

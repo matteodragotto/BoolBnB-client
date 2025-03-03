@@ -37,6 +37,7 @@ const HomePage = () => {
     <div>
       <SearchBar />
       <div className="flex flex-wrap justify-center gap-8 my-10 mx-auto px-4">
+        {apartments.length === 0 && <p className="text-center text-lg font-bold text-gray-600">Loading....</p>}
 
         {apartments.map((apartment) => (
           <div key={apartment.id} className="flex justify-center w-full sm:w-3/4 md:w-1/3 lg:w-1/5">
