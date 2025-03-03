@@ -85,7 +85,7 @@ const AddApartment = () => {
 
   return (
     <div className="text-center">
-      <h2 className="lg:text-8xl text-4xl font-bold pb-6 text-center">INSERISCI IL TUO APPARTAMENTO E INIZIA ANCHE TU IL PERCORSO PER DIVENTARE HOST!</h2>
+      <h2 className="lg:text-5xl text-3xl font-bold pb-6 text-center">INSERISCI IL TUO APPARTAMENTO E INIZIA ANCHE TU IL PERCORSO PER DIVENTARE HOST!</h2>
 
       <form action='#' className="mx-auto " onSubmit={handleSubmit}>
         <h2 className="text-2xl font-bold mb-2">Dati Proprietario</h2>
