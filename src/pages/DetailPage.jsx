@@ -69,8 +69,8 @@ const DetailPage = () => {
         <div className="flex justify-between items-center">
           <div className="text-left">
             <div className="flex items-center">
-              <p className="font-bold uppercase text-2xl mr-6">{apartmentDetail.indirizzo_completo}</p>
-              <span><FontAwesomeIcon icon={faStarSolid} className="text-yellow-400" /> {apartmentDetail.media_voti}</span>
+              <p className="font-bold uppercase text-2xl mr-1">{apartmentDetail.indirizzo_completo}</p>
+              <span className="flex items-center"><FontAwesomeIcon icon={faStarSolid} className="text-yellow-400" /> {apartmentDetail.media_voti}</span>
             </div>
             <p><strong>Tipologia:</strong> {apartmentDetail.tipologia}</p>
             <p><strong>Numero stanze:</strong> {apartmentDetail.numero_stanze} | <strong>Numero bagni:</strong> {apartmentDetail.numero_bagni} | <strong>Numero letti:</strong> {apartmentDetail.numero_letti}</p>
