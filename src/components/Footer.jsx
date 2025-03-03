@@ -36,7 +36,7 @@ const Footer = () => {
                 <div className="flex justify-center space-x-8">
                     <Link to="/chi-siamo" className="text-white text-sm hover:text-[rgb(98,137,146)] transition duration-300">Chi siamo</Link>
                     <Link to="/termini-e-condizioni" className="text-white text-sm hover:text-[rgb(98,137,146)] transition duration-300">Termini e condizioni</Link>
-                    <Link to="/privacy-policy" className="text-white text-sm hover:text-[rgb(98,137,146)] transition duration-300">Privacy policy</Link>
+                    <Link to="/privacy" className="text-white text-sm hover:text-[rgb(98,137,146)] transition duration-300">Privacy policy</Link>
                 </div>
 
                 <div className="text-center py-2 text-sm text-white">
