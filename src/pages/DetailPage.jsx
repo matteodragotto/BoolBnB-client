@@ -8,6 +8,7 @@ import { faCaretUp } from "@fortawesome/free-solid-svg-icons"
 import StarReviews from "../components/StarReviews"
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons"
 import React from "react"
+import DetailLikes from "../components/DetailLikes"
 
 
 
@@ -59,13 +60,20 @@ const DetailPage = () => {
   return (
     <div>
       <h2 className="text-5xl font-bold my-6 mx-4">{apartmentDetail.titolo}</h2>
-      {apartmentDetail.image_urls ? (
-        <div className="text-center shadow-md pb-2">
-          <PrintApartmentDetail images={apartmentDetail.image_urls} />
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <div className="relative">
+
+        <DetailLikes id={id} className='absolute top-2 left-2 bg-white px-3 py-2 mx-4 rounded-full shadow-md cursor-pointer hover:scale-110 transition z-10 flex items-center' />
+
+        {apartmentDetail.image_urls ? (
+          <div className="text-center shadow-md pb-2">
+            <PrintApartmentDetail images={apartmentDetail.image_urls} />
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
+
+
       <div className="p-4">
         <div className="flex justify-between items-center">
           <div className="text-left">
@@ -137,7 +145,7 @@ const DetailPage = () => {
 
         <div className="pt-4 border-t mt-8">
           <p className="text-2xl font-bold">Descrizione</p>
-          <p className=" my-3">{apartmentDetail.descrizione}</p>
+          <p>{apartmentDetail.descrizione}</p>
         </div>
 
         <div className="flex mt-10 border-t border-b">

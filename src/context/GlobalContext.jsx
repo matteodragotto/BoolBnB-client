@@ -53,7 +53,7 @@ const GlobalProvider = ({ children }) => {
   }
 
   const searchApartments = (page = 1) => {
-    let queryParams = { city: searchData, page, limit: 20 };
+    let queryParams = { city: searchData, page, limit: 8 };
 
     if (priceMin) queryParams.price_min = priceMin;
     if (priceMax) queryParams.price_max = priceMax;

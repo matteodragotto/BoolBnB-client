@@ -44,13 +44,17 @@ const SearchPage = () => {
           Totale appartamenti trovati: <span className="text-[#AA895F]">{searchResults.length}</span>
         </p>
       </div>
-
-      <div className="flex flex-wrap gap-4 justify-center my-10">
-        {searchResults.map(apartment => (
-          <ApartmentCards key={apartment.id} apartment={apartment} />
-        ))
-        }
-      </div >
+      <div className="flex flex-wrap justify-center gap-8 my-10 mx-auto px-4">
+        {searchResults.length === 0 && <p className="text-center text-lg font-bold text-gray-600">Loading....</p>}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+          {searchResults.map(apartment => (
+            <div key={apartment.id} className="flex justify-center w-full">
+              <ApartmentCards apartment={apartment} />
+            </div>
+          ))
+          }
+        </div >
+      </div>
       <Pagination currentPage={currentPage} setCurrentPage={handlePageChange} totalPages={totalPages} hasResults={hasResults} />
     </div>
   )
