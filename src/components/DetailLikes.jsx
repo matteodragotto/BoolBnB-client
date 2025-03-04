@@ -4,18 +4,17 @@ import axios from 'axios'
 import { useGlobalContext } from '../context/GlobalContext'
 
 
-const Likes = ({ apartment, className }) => {
+const DetailLikes = ({ id, className }) => {
 
-  const { fetchApartments, searchApartments } = useGlobalContext()
+  const { fetchApartmentDetail, apartmentDetail } = useGlobalContext()
 
   const api_url = 'http://localhost:3000/'
 
   const incrementLIkes = (apartmentsId) => {
-    axios.patch(`${api_url}immobili/${apartment.id}`, { apartmentsId })
+    axios.patch(`${api_url}immobili/${id}`, { apartmentsId })
       .then(res => {
         console.log(res.data);
-        fetchApartments()
-        searchApartments()
+        fetchApartmentDetail(id)
       })
       .catch(error => {
         console.error(`Errore nell'aumento dei like`, error);
@@ -24,11 +23,11 @@ const Likes = ({ apartment, className }) => {
 
   return (
     <div>
-      <button className={className} onClick={() => incrementLIkes(apartment.id)}><FontAwesomeIcon icon={faHeart} className="text-red-600 text-xl" />
-        <span className="ml-1 text-black font-semibold">{apartment.mi_piace}</span>
+      <button className={className} onClick={() => incrementLIkes(id)}><FontAwesomeIcon icon={faHeart} className="text-red-600 text-xl" />
+        <span className="ml-1 text-black font-semibold">{apartmentDetail.mi_piace}</span>
       </button>
     </div>
   )
 }
 
-export default Likes
+export default DetailLikes

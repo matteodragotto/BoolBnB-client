@@ -34,7 +34,7 @@ const ApartmentCards = ({ apartment }) => {
   return (
     <div key={apartment.id} className='w-full max-w-[350px]'>
       <div className='relative border border-gray-500 rounded-lg p-4 text-center shadow-lg hover:shadow-xl bg-gradient-to-r from-[#AA895F] to-[#708F96] transform hover:scale-105 transition duration-300'>
-        <Likes apartment={apartment} />
+        <Likes className="absolute top-2 left-2 bg-white px-3 py-2 rounded-full shadow-md cursor-pointer hover:scale-110 transition z-10 flex items-center" apartment={apartment} />
         <PrintApartments images={apartment.image_urls} />
         <Link to={`/dettaglio-immobile/${apartment.id}`} className='block mt-2'>
           <h3 className='text-lg font-bold text-white line-clamp-1'>{apartment.titolo}</h3>
