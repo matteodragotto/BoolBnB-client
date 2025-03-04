@@ -9,12 +9,14 @@ import Assistenza from "./pages/Assistenza"
 import Privacy from "./pages/PrivacyPolicy"
 import Termini from "./pages/Termini"
 import ChiSiamo from "./pages/ChiSiamo"
+import ScrollToTop from "./components/ScrollTop"
 
 
 const App = () => {
   return (
     <GlobalProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route Component={DefaultLayout}>
             <Route path="/" Component={HomePage} />
