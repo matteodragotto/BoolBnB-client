@@ -9,13 +9,14 @@ import StarReviews from "../components/StarReviews"
 import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons"
 import React from "react"
 import DetailLikes from "../components/DetailLikes"
-
+import { useNavigate } from "react-router-dom";
 
 
 
 
 const DetailPage = () => {
 
+  const navigate = useNavigate();
   const { id } = useParams()
 
   const { fetchApartmentDetail, apartmentDetail, addReview } = useGlobalContext()
@@ -60,7 +61,16 @@ const DetailPage = () => {
 
   return (
     <div>
-      <h2 className="text-5xl font-bold my-6 mx-4">{apartmentDetail.titolo}</h2>
+      <div className="flex justify-between items-center">
+
+        <h2 className="text-5xl font-bold my-6 mx-4">{apartmentDetail.titolo}</h2>
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-1 rounded-full hover:scale-105 transition duration-300 lg:w-25 w-20 border border-white cursor-pointer me-10"
+        >
+          Indietro
+        </button>
+      </div>
       <div className="relative">
 
         <DetailLikes id={id} className='absolute top-2 left-2 bg-white px-3 py-2 mx-4 rounded-full shadow-md cursor-pointer hover:scale-110 transition z-10 flex items-center' />
