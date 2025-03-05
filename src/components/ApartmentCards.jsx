@@ -46,7 +46,7 @@ const ApartmentCards = ({ apartment }) => {
           </div>
           <div className="flex items-center justify-center mt-2 text-white">
             <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
-            <p className="text-sm">{apartment.indirizzo_completo.split(',')[1].trim()}</p>
+            <p className="text-sm">{apartment.indirizzo_completo.split(',')[1]?.trim() || 'Indirizzo non trovato'}</p>
           </div>
 
           <p className='text-xl font-semibold text-white mt-2'>
