@@ -91,7 +91,7 @@ const DetailPage = () => {
           <div className="text-left">
             <div className="flex items-center">
               <p className="font-bold uppercase text-2xl mr-1">{apartmentDetail.indirizzo_completo}</p>
-              <span className="flex items-center"><FontAwesomeIcon icon={faStarSolid} className="text-yellow-400" /> {apartmentDetail.media_voti}</span>
+              {apartmentDetail.media_voti ? <span className="flex items-center"><FontAwesomeIcon icon={faStarSolid} className="text-yellow-400" /> {apartmentDetail.media_voti}</span> : ''}
             </div>
             <p><strong>Tipologia:</strong> {apartmentDetail.tipologia}</p>
             <p><strong>Numero stanze:</strong> {apartmentDetail.numero_stanze} | <strong>Numero bagni:</strong> {apartmentDetail.numero_bagni} | <strong>Numero letti:</strong> {apartmentDetail.numero_letti}</p>
@@ -128,7 +128,7 @@ const DetailPage = () => {
                   {/* Contenuto Modal */}
                   <div className="p-4 space-y-4">
                     <p className="text-base text-gray-500">
-                      <strong>Lingue parlate:</strong> {apartmentDetail.lingua}
+                      <strong>Lingue parlate:</strong> {apartmentDetail.lingua ? apartmentDetail.lingua : 'Non specificate'}
                     </p>
                     <p className="text-base text-gray-500">
                       <strong>Numero di telefono:</strong> {apartmentDetail.numero_telefono}
@@ -278,7 +278,7 @@ const DetailPage = () => {
 
           <div>
             <ul className="text-left w-full p-2 mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-              {apartmentDetail?.reviews ? (apartmentDetail.reviews.map((review, index) => {
+              {apartmentDetail?.reviews && apartmentDetail.reviews.length > 0 ? (apartmentDetail.reviews.map((review, index) => {
                 const borderClass = getBorderClass(index);
 
                 return (
@@ -288,7 +288,7 @@ const DetailPage = () => {
                     <p>{review.descrizione}</p>
                   </li>
                 )
-              })) : (<p>Loading...</p>)}</ul>
+              })) : (<p>Nessuna recensione trovata.</p>)}</ul>
           </div>
 
         </div>
