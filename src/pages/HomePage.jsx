@@ -36,7 +36,7 @@ const HomePage = () => {
   return (
     <div>
       <SearchBar />
-      <h2 className="text-center font-bold text-3xl  my-4">I B&B e Appartamenti Più Desiderati del Momento – Prenota il Tuo Sogno! 🏡</h2>
+      <h2 className="text-center font-bold my-4 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">I B&B e Appartamenti Più Desiderati del Momento – Prenota il Tuo Sogno! 🏡</h2>
       <div className="flex flex-wrap justify-center gap-8 my-10 mx-auto px-4">
         {apartments.length === 0 && <p className="text-center text-lg font-bold text-gray-600">Loading....</p>}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
