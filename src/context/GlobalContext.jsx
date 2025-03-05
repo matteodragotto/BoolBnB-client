@@ -24,6 +24,8 @@ const GlobalProvider = ({ children }) => {
   const [apartmentDetail, setApartmentDetail] = useState({})
   const [services, setServices] = useState([])
   const [selectedServices, setSelectedServices] = useState([])
+  const [languages, setLanguages] = useState([])
+  const [selectedLanguages, setSelectedLanguages] = useState([])
 
 
   const fetchApartments = (page = 1) => {
@@ -86,12 +88,15 @@ const GlobalProvider = ({ children }) => {
       });
   }
 
-  const addNewApartment = async (formData, images, selectedServices) => {
+  const addNewApartment = async (formData, images, selectedServices, selectedLanguages) => {
     try {
       const apartmentResponse = await axios.post(`${api_url}immobili`, formData);
       const apartmentsId = apartmentResponse.data.apartments_id;
+      const usersId = apartmentResponse.data.users_id
 
       console.log('Appartamento creato con successo con id:', apartmentsId);
+      console.log('Utente creato con successo con id:', usersId);
+
 
       if (images.length > 0) {
         const imageFormData = new FormData();
@@ -117,7 +122,13 @@ const GlobalProvider = ({ children }) => {
         console.log('Servizi associati all\'appartamento con successo:', servicesResponse.data);
       }
 
-      return apartmentsId;
+      if (selectedLanguages.length > 0) {
+        const languagesResponse = await axios.post(`${api_url}immobili/${usersId}/languages`, { language_ids: selectedLanguages });
+
+        console.log('Lingue associate all\'utente con successo:', languagesResponse.data);
+      }
+
+      return [apartmentsId, usersId];
     } catch (error) {
       console.error('Errore durante la creazione dell\'appartamento e il caricamento delle immagini', error);
     }
@@ -140,6 +151,16 @@ const GlobalProvider = ({ children }) => {
       })
       .catch(error => {
         console.error('Errore nel caricamento dei servizi:', error);
+      });
+  }
+
+  const fetchLanguages = () => {
+    axios.get(`${api_url}immobili/languages`)
+      .then(res => {
+        setLanguages(res.data)
+      })
+      .catch(error => {
+        console.error('Errore nel caricamento delle lingue:', error);
       });
   }
 
@@ -176,7 +197,12 @@ const GlobalProvider = ({ children }) => {
     services,
     setServices,
     selectedServices,
-    setSelectedServices
+    setSelectedServices,
+    fetchLanguages,
+    languages,
+    setLanguages,
+    selectedLanguages,
+    setSelectedLanguages
   }
 
   return (
