@@ -99,29 +99,36 @@ const AddApartment = () => {
         </div>
 
         <h3 className="text-2xl font-semibold mb-4">Dati Appartamento</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 border border-gray-300 p-4 rounded-lg">
-          <textarea name="titolo" placeholder="Titolo" required className="input-style h-24 text-lg font-semibold" value={formData.titolo} onChange={handleChange}></textarea>
-          <select name="tipologia" required className="input-style" value={formData.tipologia} onChange={handleChange}>
-            {typesArray.map((type, index) => (<option key={index} value={type}>{type}</option>))}
-          </select>
+        <div className="mb-4 border border-gray-300 p-4 rounded-lg">
+          <textarea name="titolo" placeholder="Titolo" required className="input-style h-24 text-lg font-semibold mb-4 w-full" value={formData.titolo} onChange={handleChange}></textarea>
+
+          <div className="mb-4">
+            <label className="block text-sm font-semibold text-gray-600">Tipologia</label>
+            <select name="tipologia" required className="input-style w-full" value={formData.tipologia || ''} onChange={handleChange}>
+              <option value="" disabled>Seleziona la tipologia</option> {/* Placeholder */}
+              {typesArray.map((type, index) => (
+                <option key={index} value={type}>{type}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 border border-gray-300 p-4 rounded-lg">
           <div>
             <label className="block text-sm font-medium">Stanze</label>
-            <input type="number" name="numero_stanze" required className="input-style text-sm" value={formData.numero_stanze} onChange={handleChange} />
+            <input type="number" name="numero_stanze" required className="input-style text-sm w-20" value={formData.numero_stanze} onChange={handleChange} />
           </div>
           <div>
             <label className="block text-sm font-medium">Letti</label>
-            <input type="number" name="numero_letti" required className="input-style text-sm" value={formData.numero_letti} onChange={handleChange} />
+            <input type="number" name="numero_letti" required className="input-style text-sm w-20" value={formData.numero_letti} onChange={handleChange} />
           </div>
           <div>
             <label className="block text-sm font-medium">Bagni</label>
-            <input type="number" name="numero_bagni" required className="input-style text-sm" value={formData.numero_bagni} onChange={handleChange} />
+            <input type="number" name="numero_bagni" required className="input-style text-sm w-20" value={formData.numero_bagni} onChange={handleChange} />
           </div>
           <div>
             <label className="block text-sm font-medium">Metri quadri</label>
-            <input type="number" name="metri_quadri" required className="input-style text-sm" value={formData.metri_quadri} onChange={handleChange} />
+            <input type="number" name="metri_quadri" required className="input-style text-sm w-20" value={formData.metri_quadri} onChange={handleChange} />
           </div>
         </div>
 
@@ -150,7 +157,8 @@ const AddApartment = () => {
         <button type="submit" className="w-full mt-6 bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-lg hover:opacity-90 transition">Registra il tuo appartamento</button>
       </form>
     </div>
-
   )
 }
-export default AddApartment;
+
+
+export default AddApartment;  
