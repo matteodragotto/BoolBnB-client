@@ -27,6 +27,10 @@ const AddApartment = () => {
   const [formData, setFormData] = useState(initialFormData)
   const [thumbnails, setThumbnails] = useState([])
   const [images, setImages] = useState([])
+  const [error, setError] = useState("")
+
+
+
 
   let typesArray = [];
 
@@ -37,6 +41,9 @@ const AddApartment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (error) {
+      return;
+    }
 
     addNewApartment(formData, images, selectedServices, selectedLanguages)
       .then(([apartmentsId, userId]) => {
@@ -58,6 +65,14 @@ const AddApartment = () => {
     });
     console.log(formData);
 
+    if (name === "indirizzo_completo") {
+      const regex = /^(via|viale|corso|piazza)\s+[A-Za-z\s]+\s+\d{1,5},\s+[A-Za-z\s]+$/i;
+      if (!regex.test(value)) {
+        setError("Formato non valido. Esempio: via Roma 12, Milano");
+      } else {
+        setError("");
+      }
+    }
   };
 
   const handleImageChange = (e) => {
@@ -209,10 +224,11 @@ const AddApartment = () => {
                 id="indirizzo_completo"
                 name="indirizzo_completo"
                 className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Indirizzo Completo"
+                placeholder="via Roma 1, Roma"
                 required
                 value={formData.indirizzo_completo}
                 onChange={handleChange} />
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
 
             <div className="flex flex-wrap gap-4 mb-5 justify-between">
@@ -357,7 +373,11 @@ const AddApartment = () => {
 
 
           <div className="flex justify-center mb-5">
-            <button className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full hover:scale-105 transition duration-300 lg:w-64 border border-white cursor-pointer mb-5" type="submit">Registra il tuo appartamento</button>
+            <button
+              className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full hover:scale-105 transition duration-300 lg:w-64 border border-white cursor-pointer mb-5" type="submit"
+              disabled={!!error}>
+              Registra il tuo appartamento
+            </button>
           </div>
 
         </form>
