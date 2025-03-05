@@ -127,7 +127,6 @@ const GlobalProvider = ({ children }) => {
     axios.post(`${api_url}immobili/${id}/recensioni`, reviewData)
       .then(res => {
         console.log('Recensione aggiunta con successo');
-        setIsOpenReviews(false)
       })
       .catch(error => {
         console.error('Errore nel caricamento della recensione:', error);
