@@ -33,6 +33,7 @@ const DetailPage = () => {
 
   const handleReviewSubmit = (e) => {
     e.preventDefault()
+    setIsOpenReviews(false)
   }
 
   const handleReviewChange = (e) => {
@@ -51,7 +52,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     fetchApartmentDetail(id)
-  }, [id])
+  }, [id, apartmentDetail.reviews])
 
   const getBorderClass = (index) => {
     return index % 2 === 0 ? 'border-[#AA895F]' : 'border-[#708F96]';
@@ -125,8 +126,8 @@ const DetailPage = () => {
                       <strong>Email:</strong> {apartmentDetail.email}
                     </p>
                     <div>
-                      <a href="https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=172&ct=1740671892&rver=7.5.2211.0&wp=MBI_SSL&wreply=https%3a%2f%2foutlook.live.com%2fowa%2f%3fnlp%3d1%26cobrandid%3dab0455a0-8d03-46b9-b18b-df2f57b9e44c%26RpsCsrfState%3dbe1c6fe7-9c8d-3c5f-db87-fa8adbbec658&id=292841&aadredir=1&CBCXT=out&lw=1&fl=dob%2cflname%2cwld&cobrandid=ab0455a0-8d03-46b9-b18b-df2f57b9e44c" className="border text-white bg-blue-500 rounded-4xl p-2 mr-2">Invia una e-mail</a>
-                      <a href="https://web.whatsapp.com/" className="border text-white bg-green-500 rounded-4xl p-2">Invia un messaggio</a>
+                      <a href="https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=172&ct=1740671892&rver=7.5.2211.0&wp=MBI_SSL&wreply=https%3a%2f%2foutlook.live.com%2fowa%2f%3fnlp%3d1%26cobrandid%3dab0455a0-8d03-46b9-b18b-df2f57b9e44c%26RpsCsrfState%3dbe1c6fe7-9c8d-3c5f-db87-fa8adbbec658&id=292841&aadredir=1&CBCXT=out&lw=1&fl=dob%2cflname%2cwld&cobrandid=ab0455a0-8d03-46b9-b18b-df2f57b9e44c" className="border text-white bg-blue-500 rounded-4xl p-2 mr-2" target="_blank">Invia una e-mail</a>
+                      <a href="https://web.whatsapp.com/" className="border text-white bg-green-500 rounded-4xl p-2" target="_blank">Invia un messaggio</a>
                     </div>
                   </div>
                   <div className="flex items-center p-4 border-t">
