@@ -4,7 +4,7 @@ import { useGlobalContext } from "../context/GlobalContext"
 
 const AddApartment = () => {
 
-  const { addNewApartment, apartments, fetchApartments, services, selectedServices, setSelectedServices, fetchServices } = useGlobalContext()
+  const { addNewApartment, apartments, fetchApartments, services, selectedServices, setSelectedServices, fetchServices, languages, selectedLanguages, setSelectedLanguages, fetchLanguages } = useGlobalContext()
 
   const navigate = useNavigate()
 
@@ -38,9 +38,11 @@ const AddApartment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addNewApartment(formData, images, selectedServices)
-      .then(apartmentsId => {
+    addNewApartment(formData, images, selectedServices, selectedLanguages)
+      .then(([apartmentsId, userId]) => {
         console.log('Appartamento creato con id:', apartmentsId);
+        console.log('Utente aggiunto con id:', userId);
+
         navigate(`/dettaglio-immobile/${apartmentsId}`)
       })
       .catch((error) => {
@@ -68,19 +70,42 @@ const AddApartment = () => {
 
   const handleCheckboxChange = (e, id) => {
     if (e.target.checked) {
-
-      setSelectedServices((prevSelected) => [...prevSelected, id]);
+      setSelectedServices((prevSelected) => {
+        const updatedServices = [...prevSelected, id];
+        console.log('Servizi selezionati dopo l\'aggiunta:', updatedServices);
+        return updatedServices;
+      });
     } else {
-
-      setSelectedServices((prevSelected) =>
-        prevSelected.filter((selectedId) => selectedId !== id)
-      );
+      setSelectedServices((prevSelected) => {
+        const updatedServices = prevSelected.filter((selectedId) => selectedId !== id);
+        console.log('Servizi selezionati dopo la rimozione:', updatedServices);
+        return updatedServices;
+      });
     }
   };
+
+
+  const handleLanguages = (e, id) => {
+    if (e.target.checked) {
+      setSelectedLanguages((prevLanguages) => {
+        const updatedLanguages = [...prevLanguages, id];
+        console.log('Lingue selezionate dopo l\'aggiunta:', updatedLanguages);
+        return updatedLanguages;
+      });
+    } else {
+      setSelectedLanguages((prevLanguages) => {
+        const updatedLanguages = prevLanguages.filter((languagesId) => languagesId !== id);
+        console.log('Lingue selezionate dopo la rimozione:', updatedLanguages);
+        return updatedLanguages;
+      });
+    }
+  };
+
 
   useEffect(() => {
     fetchApartments()
     fetchServices()
+    fetchLanguages()
   }, [])
 
   return (
@@ -138,6 +163,19 @@ const AddApartment = () => {
               required
               value={formData.email}
               onChange={handleChange} />
+          </div>
+
+          <div className="border rounded-sm mx-10 my-5 grid grid-cols-2 lg:grid-cols-5 p-4 gap-4">
+            {languages.map(language => (
+              <div key={language.id}>
+                <input
+                  type="checkbox"
+                  id={`checkbox-${language.id}`}
+                  onChange={(e) => handleLanguages(e, language.id)}
+                />
+                <label htmlFor={`checkbox-${language.id}`}>{language.lingua}</label>
+              </div>
+            ))}
           </div>
 
         </div>
