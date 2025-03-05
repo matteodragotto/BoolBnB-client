@@ -360,7 +360,7 @@ const AddApartment = () => {
           </div>
 
           <h2 className="text-2xl text-center lg:text-left font-bold">Seleziona i servizi offerti</h2>
-          <div className="overflow-auto h-64 md:h-24 border rounded-sm mx-10 my-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 p-4 gap-4">
+          <div className="overflow-auto h-64 md:h-24 border rounded-sm mx-10 my-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-4 gap-4">
             {services.map(service => (
               <div key={service.id} className="flex items-center gap-2">
                 <input
