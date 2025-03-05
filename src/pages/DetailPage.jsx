@@ -36,6 +36,7 @@ const DetailPage = () => {
   const handleReviewSubmit = (e) => {
     e.preventDefault()
     setIsOpenReviews(false)
+    fetchApartmentDetail(id)
   }
 
   const handleReviewChange = (e) => {
@@ -54,7 +55,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     fetchApartmentDetail(id)
-  }, [id, apartmentDetail.reviews])
+  }, [id])
 
   const getBorderClass = (index) => {
     return index % 2 === 0 ? 'border-[#AA895F]' : 'border-[#708F96]';
