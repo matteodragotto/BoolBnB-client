@@ -88,7 +88,7 @@ const DetailPage = () => {
 
 
       <div className="p-4">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row md:justify-between items-center">
           <div className="text-left">
             <div className="flex items-center">
               <p className="font-bold uppercase lg:text-2xl md:texl-lg mr-1">{apartmentDetail.indirizzo_completo}</p>
@@ -99,7 +99,7 @@ const DetailPage = () => {
             <p><strong>Prezzo:</strong> {apartmentDetail.prezzo_notte}€/notte</p>
 
           </div>
-          <div className="text-center">
+          <div className="md:text-center flex flex-row lg:flex-col justify-between items-center w-full sm:w-auto md:block">
             <p>
               <strong>Host:</strong> {apartmentDetail.nome} {apartmentDetail.cognome}
             </p>
