@@ -44,7 +44,7 @@ const ApartmentCards = ({ apartment }) => {
           </div>
 
           <p className='text-xl font-semibold text-white mt-2'>
-            <p className="mr-2" />
+
             {apartment.prezzo_notte}€ / notte
           </p>
           <p className={`text-lg font-bold ${ratingColor} absolute bottom-2 right-2`}>
