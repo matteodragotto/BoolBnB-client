@@ -124,9 +124,9 @@ const AddApartment = () => {
   }, [])
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-0 py-8">
       <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-        <h1 className="text-5xl font-bold text-center mb-2">INSERISCI IL TUO APPARTAMENTO</h1>
+        <h1 className="lg:text-5xl text-xl md:text-3xl font-bold text-center mb-2">INSERISCI IL TUO APPARTAMENTO</h1>
         <p className="text-center text-gray-600 mb-6 text-xl">Inizia anche tu il percorso per diventare host!</p>
 
 
