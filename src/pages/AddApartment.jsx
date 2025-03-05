@@ -84,234 +84,73 @@ const AddApartment = () => {
   }, [])
 
   return (
-    <div className="text-center">
-      <h2 className="lg:text-5xl text-3xl font-bold pb-6 text-center">INSERISCI IL TUO APPARTAMENTO E INIZIA ANCHE TU IL PERCORSO PER DIVENTARE HOST!</h2>
+    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md border border-gray-300 mt-12 mb-12">
+      <h2 className="lg:text-5xl text-3xl font-bold text-center">INSERISCI IL TUO APPARTAMENTO</h2>
+      <p className="text-lg text-center pb-6">INIZIA ANCHE TU IL PERCORSO PER DIVENTARE HOST!</p>
 
-      <form action='#' className="mx-auto " onSubmit={handleSubmit}>
-        <h2 className="text-2xl font-bold mb-2">Dati Proprietario</h2>
-        <div className="flex flex-wrap gap-4 justify-center mb-5">
-          <div>
-            <label htmlFor="nome" className="mb-2 text-sm font-medium text-gray-900 sr">Nome</label>
-            <input
-              type="text"
-              id="nome"
-              name="nome"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Nome"
-              required
-              value={formData.nome}
-              onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor="Cognome" className="mb-2 text-sm font-medium text-gray-900 sr">Cognome</label>
-            <input
-              type="text"
-              id="cognome"
-              name="cognome"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Cognome"
-              required
-              value={formData.cognome}
-              onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor="Telefono" className="mb-2 text-sm font-medium text-gray-900 sr">Cellulare</label>
-            <input
-              type="text"
-              id="numero_telefono"
-              name="numero_telefono"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Numero di telefono"
-              required
-              value={formData.numero_telefono}
-              onChange={handleChange} />
-          </div>
-
-          <div>
-            <label htmlFor="email" className="mb-2 text-sm font-medium text-gray-900 sr">Email</label>
-            <input
-              type="text"
-              id="email"
-              name="email"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Email"
-              required
-              value={formData.email}
-              onChange={handleChange} />
-          </div>
-
+      <form onSubmit={handleSubmit}>
+        <h3 className="text-2xl font-semibold mb-4">Dati Proprietario</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 border border-gray-300 p-4 rounded-lg">
+          <input type="text" name="nome" placeholder="Nome" required className="input-style" value={formData.nome} onChange={handleChange} />
+          <input type="text" name="cognome" placeholder="Cognome" required className="input-style" value={formData.cognome} onChange={handleChange} />
+          <input type="text" name="numero_telefono" placeholder="Cellulare" required className="input-style" value={formData.numero_telefono} onChange={handleChange} />
+          <input type="email" name="email" placeholder="Email" required className="input-style" value={formData.email} onChange={handleChange} />
+          <input type="text" name="lingue_parlate" placeholder="Lingue parlate" required className="input-style" value={formData.lingue_parlate} onChange={handleChange} />
         </div>
 
-        <h2 className="text-2xl font-bold mb-2">Dati Appartamento</h2>
-        <div className="flex flex-wrap gap-4 justify-center mb-5">
-          <div>
-            <label htmlFor="titolo" className="mb-2 text-sm font-medium text-gray-900 sr">Titolo</label>
-            <input
-              type="text"
-              id="titolo"
-              name="titolo"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Titolo"
-              required
-              value={formData.titolo}
-              onChange={handleChange} />
-          </div>
+        <h3 className="text-2xl font-semibold mb-4">Dati Appartamento</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 border border-gray-300 p-4 rounded-lg">
+          <textarea name="titolo" placeholder="Titolo" required className="input-style h-24 text-lg font-semibold" value={formData.titolo} onChange={handleChange}></textarea>
+          <select name="tipologia" required className="input-style" value={formData.tipologia} onChange={handleChange}>
+            {typesArray.map((type, index) => (<option key={index} value={type}>{type}</option>))}
+          </select>
+        </div>
 
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6 border border-gray-300 p-4 rounded-lg">
           <div>
-            <label htmlFor="numero_stanze" className="mb-2 text-sm font-medium text-gray-900 sr">Numero stanze</label>
-            <input
-              type="number"
-              id="numero_stanze"
-              name="numero_stanze"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Numero stanze"
-              required
-              value={formData.numero_stanze}
-              onChange={handleChange} />
+            <label className="block text-sm font-medium">Stanze</label>
+            <input type="number" name="numero_stanze" required className="input-style text-sm" value={formData.numero_stanze} onChange={handleChange} />
           </div>
-
           <div>
-            <label htmlFor="numero_letti" className="mb-2 text-sm font-medium text-gray-900 sr">Numero letti</label>
-            <input
-              type="number"
-              id="numero_letti"
-              name="numero_letti"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Numero letti"
-              required
-              value={formData.numero_letti}
-              onChange={handleChange} />
+            <label className="block text-sm font-medium">Letti</label>
+            <input type="number" name="numero_letti" required className="input-style text-sm" value={formData.numero_letti} onChange={handleChange} />
           </div>
-
           <div>
-            <label htmlFor="numero_bagni" className="mb-2 text-sm font-medium text-gray-900 sr">Numero bagni</label>
-            <input
-              type="number"
-              id="numero_bagni"
-              name="numero_bagni"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Numero bagni"
-              required
-              value={formData.numero_bagni}
-              onChange={handleChange} />
+            <label className="block text-sm font-medium">Bagni</label>
+            <input type="number" name="numero_bagni" required className="input-style text-sm" value={formData.numero_bagni} onChange={handleChange} />
           </div>
-
           <div>
-            <label htmlFor="metri_quadri" className="mb-2 text-sm font-medium text-gray-900 sr">Metri quadri</label>
-            <input
-              type="number"
-              id="metri_quadri"
-              name="metri_quadri"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Metri quadri"
-              required
-              value={formData.metri_quadri}
-              onChange={handleChange} />
-          </div>
-
-          <div>
-            <label htmlFor="indirizzo_completo" className="mb-2 text-sm font-medium text-gray-900 sr">Indirizzo Completo</label>
-            <input
-              type="text"
-              id="indirizzo_completo"
-              name="indirizzo_completo"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Indirizzo Completo"
-              required
-              value={formData.indirizzo_completo}
-              onChange={handleChange} />
-          </div>
-
-          <div>
-            <label htmlFor="tipologia" className="mb-2 text-sm font-medium text-gray-900 sr">Tipologia</label>
-            <select
-              id="tipologia"
-              name="tipologia"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-              value={formData.tipologia}
-              onChange={handleChange}
-            >
-              {typesArray.map((types, index) => (
-                <option key={index} value={types}>{types}</option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="prezzo_notte" className="mb-2 text-sm font-medium text-gray-900 sr">Prezzo notte</label>
-            <input
-              type="number"
-              id="prezzo_notte"
-              name="prezzo_notte"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Prezzo per notte"
-              required
-              value={formData.prezzo_notte}
-              onChange={handleChange} />
-          </div>
-
-          <div>
-            <label htmlFor="descrizione" className="mb-2 text-sm font-medium text-gray-900 sr">Descrizione</label>
-            <textarea
-              type="text"
-              id="descrizione"
-              name="descrizione"
-              className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Descrizione"
-              required
-              value={formData.descrizione}
-              onChange={handleChange} />
+            <label className="block text-sm font-medium">Metri quadri</label>
+            <input type="number" name="metri_quadri" required className="input-style text-sm" value={formData.metri_quadri} onChange={handleChange} />
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold">Seleziona i servizi offerti</h2>
-        <div className="border rounded-sm mx-10 my-5 grid grid-cols-2 lg:grid-cols-5 p-4 gap-4">
+        <input type="text" name="indirizzo_completo" placeholder="Indirizzo" required className="input-style w-full mb-4 border border-gray-300 p-2 rounded-lg" value={formData.indirizzo_completo} onChange={handleChange} />
+
+        <h3 className="text-2xl font-semibold mb-4">Servizi Offerti</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-6 border border-gray-300 p-4 rounded-lg">
           {services.map(service => (
-            <div key={service.id}>
-              <input
-                type="checkbox"
-                id={`checkbox-${service.id}`}
-                onChange={(e) => handleCheckboxChange(e, service.id)}
-              />
-              <label htmlFor={`checkbox-${service.id}`}>{service.nome_servizio}</label>
-            </div>
+            <label key={service.id} className="flex items-center gap-2">
+              <input type="checkbox" onChange={(e) => handleCheckboxChange(e, service.id)} />
+              {service.nome_servizio}
+            </label>
           ))}
         </div>
 
-        <h2 className="text-2xl font-bold">Carica le immagini</h2>
-        <div className="flex flex-col justify-center mb-5 form-group">
-          <div className="flex flex-grow justify-center">
-            <input
-              type="file"
-              className="hidden"
-              name="url"
-              multiple
-              onChange={handleImageChange}
-              id="file-input"
-            />
-            <label
-              htmlFor="file-input"
-              className="cursor-pointer bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white rounded-full w-10 h-10 flex justify-center items-center text-2xl my-3 px-10"
-            >
-              +
-            </label>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            {thumbnails.map((thumbnail, index) => (
-              <img className="w-64" key={index} src={thumbnail} alt={thumbnail} />
-            ))}
-          </div>
-
+        <h3 className="text-2xl font-semibold mb-4">Carica le immagini</h3>
+        <input type="file" name="url" multiple onChange={handleImageChange} className="hidden" id="file-input" />
+        <label htmlFor="file-input" className="cursor-pointer bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white px-4 py-2 rounded-lg">+</label>
+        <div className="flex flex-wrap gap-4 mt-4">
+          {thumbnails.map((thumbnail, index) => (<img key={index} src={thumbnail} alt="Anteprima" className="w-32 h-32 object-cover rounded-lg border border-gray-300" />))}
         </div>
 
-        <button className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full hover:scale-105 transition duration-300 lg:w-64 border border-white cursor-pointer mb-5" type="submit">Registra il tuo appartamento</button>
-      </form>
+        <h3 className="text-2xl font-semibold mb-4">Descrizione</h3>
+        <textarea name="descrizione" placeholder="Descrizione" required className="input-style h-32 text-base w-full border border-gray-300 p-2 rounded-lg" value={formData.descrizione} onChange={handleChange}></textarea>
 
+        <button type="submit" className="w-full mt-6 bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-lg hover:opacity-90 transition">Registra il tuo appartamento</button>
+      </form>
     </div>
 
   )
 }
-
-export default AddApartment
+export default AddApartment;
