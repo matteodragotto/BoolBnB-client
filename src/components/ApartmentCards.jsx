@@ -37,7 +37,13 @@ const ApartmentCards = ({ apartment }) => {
         <Likes className="absolute top-2 left-2 bg-white px-3 py-2 rounded-full shadow-md cursor-pointer hover:scale-110 transition z-10 flex items-center" apartment={apartment} />
         <PrintApartments images={apartment.image_urls} />
         <Link to={`/dettaglio-immobile/${apartment.id}`} className='block mt-2'>
-          <h3 className='text-lg font-bold text-white line-clamp-1'>{apartment.titolo}</h3>
+          <div className="flex justify-center">
+            <h3 className='text-lg font-bold text-white line-clamp-1'>{apartment.titolo}</h3>
+            <p className={`text-lg font-bold ${ratingColor} ml-2`}>
+              <FontAwesomeIcon icon={faStarSolid} className="mr-1" />
+              <span className="text-white">{apartment.media_voti}</span>
+            </p>
+          </div>
           <div className="flex items-center justify-center mt-2 text-white">
             <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />
             <p className="text-sm">{apartment.indirizzo_completo.split(',')[1].trim()}</p>
@@ -46,10 +52,6 @@ const ApartmentCards = ({ apartment }) => {
           <p className='text-xl font-semibold text-white mt-2'>
 
             {apartment.prezzo_notte}€ / notte
-          </p>
-          <p className={`text-lg font-bold ${ratingColor} absolute bottom-2 right-2`}>
-            <FontAwesomeIcon icon={faStarSolid} className="mr-1" />
-            <span className="text-white">{apartment.media_voti}</span>
           </p>
           {searchPageData()}
         </Link>
