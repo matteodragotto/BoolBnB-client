@@ -65,14 +65,57 @@ const AddApartment = () => {
     });
     console.log(formData);
 
-    if (name === "indirizzo_completo") {
-      const regex = /^(via|viale|corso|piazza)\s+[A-Za-z\s]+\s+\d{1,5},\s+[A-Za-z\s]+$/i;
-      if (!regex.test(value)) {
-        setError("Formato non valido. Esempio: via Roma 12, Milano");
-      } else {
-        setError("");
-      }
+    let newValue = type === 'number' ? parseInt(value) : value;
+    let errorMessage = "";
+
+    switch (name) {
+      case "nome":
+      case "cognome":
+        if (!/^[A-Za-z\s]+$/.test(value)) {
+          errorMessage = "Il nome e il cognome possono contenere solo lettere.";
+        }
+        break;
+
+      case "numero_telefono":
+        if (!/^\d{9,15}$/.test(value)) {
+          errorMessage = "Il numero di telefono deve contenere tra 9 e 15 cifre.";
+        }
+        break;
+
+      case "email":
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          errorMessage = "Inserisci un'email valida.";
+        }
+        break;
+
+      case "indirizzo_completo":
+        if (!/^(via|viale|corso|piazza)\s+[A-Za-z\s]+\s+\d{1,5},\s+[A-Za-z\s]+$/i.test(value)) {
+          errorMessage = "Formato non valido. Esempio: via Roma 12, Milano.";
+        }
+        break;
+
+      case "numero_stanze":
+      case "numero_letti":
+      case "numero_bagni":
+      case "metri_quadri":
+      case "prezzo_notte":
+        if (isNaN(newValue) || newValue <= 0) {
+          errorMessage = "Deve essere un numero positivo.";
+        }
+        break;
+
+      case "descrizione":
+        if (value.trim().length < 10) {
+          errorMessage = "La descrizione deve contenere almeno 10 caratteri.";
+        }
+        break;
+
+      default:
+        break;
     }
+
+    setFormData({ ...formData, [name]: newValue });
+    setError(errorMessage);
   };
 
   const handleImageChange = (e) => {
@@ -144,6 +187,7 @@ const AddApartment = () => {
                 required
                 value={formData.nome}
                 onChange={handleChange} />
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
             <div>
               <label htmlFor="Cognome" className="mb-2 text-sm font-medium text-gray-900 sr">Cognome</label>
@@ -156,6 +200,7 @@ const AddApartment = () => {
                 required
                 value={formData.cognome}
                 onChange={handleChange} />
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
             <div>
               <label htmlFor="Telefono" className="mb-2 text-sm font-medium text-gray-900 sr">Cellulare</label>
@@ -168,6 +213,7 @@ const AddApartment = () => {
                 required
                 value={formData.numero_telefono}
                 onChange={handleChange} />
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
 
             <div>
@@ -181,6 +227,7 @@ const AddApartment = () => {
                 required
                 value={formData.email}
                 onChange={handleChange} />
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
             <div className="border rounded-sm mx-10 my-5 grid grid-cols-2 lg:grid-cols-5 p-4 gap-4">
               {languages.map(language => (
@@ -195,13 +242,6 @@ const AddApartment = () => {
               ))}
             </div>
           </div>
-
-
-
-
-
-
-
           <h2 className="text-2xl font-bold mb-4">Dati Appartamento</h2>
           <div className="flex flex-wrap gap-4 justify-center mb-5">
             <div className="w-full">
@@ -215,6 +255,7 @@ const AddApartment = () => {
                 required
                 value={formData.titolo}
                 onChange={handleChange} />
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
             </div>
 
             <div className="w-full">
