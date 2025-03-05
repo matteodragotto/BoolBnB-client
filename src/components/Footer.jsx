@@ -27,7 +27,7 @@ const Footer = () => {
 
                 <div className="flex items-center sm:w-64 sm:justify-end">
                     <Link to="/assistenza">
-                        <button className="bg-gradient-to-r from-[rgb(170,137,95)] to-[rgb(112,143,150)] text-white p-2 rounded-full hover:scale-105 transition duration-300 lg:w-48 w-24 border border-white">Assistenza</button>
+                        <button className="bg-gradient-to-r from-[rgb(170,137,95)] to-[rgb(112,143,150)] text-white p-2 rounded-full hover:scale-105 transition duration-300 lg:w-48 w-24 border border-white hover:cursor-pointer">Assistenza</button>
                     </Link>
                 </div>
             </div>
