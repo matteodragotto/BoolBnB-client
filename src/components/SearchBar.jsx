@@ -33,7 +33,7 @@ const SearchBar = () => {
 
               <input type="search" id="default-search" className="block lg:w-100 w-64 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg  focus:ring-[#AA895F] focus:border-[#AA895F] placeholder-transparent lg:placeholder:text-gray-700 bg-white" placeholder="Cerca appartamenti in base alla città..." required value={searchData} onChange={(e) => setSearchData(e.target.value)} />
 
-              <button type="submit" className="text-white absolute end-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-gradient-to-r from-[#AA895F] to-[#708F96] hover:scale-105 transition duration-300" onClick={() => searchApartments()} to="/search">
+              <button type="submit" className="text-white absolute end-2.5 bottom-2.5 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 bg-gradient-to-r from-[#AA895F] to-[#708F96] hover:scale-105 transition duration-300 hover:cursor-pointer" onClick={() => searchApartments()} to="/search">
                 Cerca
               </button>
             </div>
