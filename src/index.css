@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+* {
+  box-sizing: border-box;
+}
+
+
 /* <weight>: Use a value from 300 to 700 */
 /* <uniquifier>: Use a unique and descriptive class name */
 

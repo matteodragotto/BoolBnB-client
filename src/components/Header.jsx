@@ -9,7 +9,7 @@ const Header = () => {
       <div className="container flex justify-between">
         <Link to={'/?page=1'}><img className="p-4" src="/logo.png" alt="" /></Link>
         <div className='add-contain flex items-center'>
-          <span className='add'><Link to={'/add'}>Affitta con Bool B&B  <FontAwesomeIcon icon={faHouse} color='white' /></Link></span>
+          <span className='add text-lg'><Link to={'/add'}>Affitta con Bool B&B  <FontAwesomeIcon icon={faHouse} color='white' /></Link></span>
 
         </div>
 

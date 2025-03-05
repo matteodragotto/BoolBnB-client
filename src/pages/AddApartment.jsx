@@ -27,10 +27,10 @@ const AddApartment = () => {
   const [formData, setFormData] = useState(initialFormData)
   const [thumbnails, setThumbnails] = useState([])
   const [images, setImages] = useState([])
-  const [error, setError] = useState("")
-
-
-
+  const [error, setError] = useState({
+    email: '',
+    indirizzo_completo: ''
+  })
 
   let typesArray = [];
 
@@ -68,9 +68,31 @@ const AddApartment = () => {
     if (name === "indirizzo_completo") {
       const regex = /^(via|viale|corso|piazza)\s+[A-Za-z\s]+\s+\d{1,5},\s+[A-Za-z\s]+$/i;
       if (!regex.test(value)) {
-        setError("Formato non valido. Esempio: via Roma 12, Milano");
+
+        setError((prevErrors) => ({
+          ...prevErrors,
+          indirizzo_completo: "Formato non valido. Esempio: via Roma 12, Milano",
+        }));
       } else {
-        setError("");
+        setError((prevErrors) => ({
+          ...prevErrors,
+          indirizzo_completo: "",
+        }));
+      }
+    }
+
+    if (name === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        setError((prevErrors) => ({
+          ...prevErrors,
+          email: "Email non valida",
+        }));
+      } else {
+        setError((prevErrors) => ({
+          ...prevErrors,
+          email: "",
+        }));
       }
     }
   };
@@ -131,7 +153,7 @@ const AddApartment = () => {
 
 
         <form action='#' className="mx-auto " onSubmit={handleSubmit}>
-          <h2 className="text-2xl font-bold mb-2">Dati Proprietario</h2>
+          <h2 className="text-2xl text-center lg:text-left font-bold mb-2">Dati Proprietario</h2>
           <div className="flex flex-wrap gap-4 justify-center mb-5">
             <div>
               <label htmlFor="nome" className="mb-2 text-sm font-medium text-gray-900 sr">Nome</label>
@@ -139,7 +161,7 @@ const AddApartment = () => {
                 type="text"
                 id="nome"
                 name="nome"
-                className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full sm:w-full md:w-full lg:w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Nome"
                 required
                 value={formData.nome}
@@ -151,7 +173,7 @@ const AddApartment = () => {
                 type="text"
                 id="cognome"
                 name="cognome"
-                className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full sm:w-full md:w-full lg:w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Cognome"
                 required
                 value={formData.cognome}
@@ -163,7 +185,7 @@ const AddApartment = () => {
                 type="text"
                 id="numero_telefono"
                 name="numero_telefono"
-                className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full sm:w-full md:w-full lg:w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Numero di telefono"
                 required
                 value={formData.numero_telefono}
@@ -176,24 +198,30 @@ const AddApartment = () => {
                 type="text"
                 id="email"
                 name="email"
-                className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full sm:w-full md:w-full lg:w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Email"
                 required
                 value={formData.email}
                 onChange={handleChange} />
+              {error && <p className="text-red-500 text-sm mt-1">{error.email}</p>}
             </div>
-            <div className="border rounded-sm mx-10 my-5 grid grid-cols-2 lg:grid-cols-5 p-4 gap-4">
+          </div>
+          <div>
+            <h2 className="text-sm text-center lg:text-left font-bold mb-2">Seleziona la tua lingua</h2>
+            <div className="overflow-auto h-64 md:h-24 border rounded-md my-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 p-4 gap-4">
               {languages.map(language => (
-                <div key={language.id}>
+                <div key={language.id} className="flex items-center gap-2">
                   <input
                     type="checkbox"
                     id={`checkbox-${language.id}`}
                     onChange={(e) => handleLanguages(e, language.id)}
+                    className="m-0"
                   />
-                  <label htmlFor={`checkbox-${language.id}`}>{language.lingua}</label>
+                  <label htmlFor={`checkbox-${language.id}`} className="text-sm">{language.lingua}</label>
                 </div>
               ))}
             </div>
+
           </div>
 
 
@@ -202,7 +230,7 @@ const AddApartment = () => {
 
 
 
-          <h2 className="text-2xl font-bold mb-4">Dati Appartamento</h2>
+          <h2 className="text-2xl text-center lg:text-left font-bold mb-4">Dati Appartamento</h2>
           <div className="flex flex-wrap gap-4 justify-center mb-5">
             <div className="w-full">
               <label htmlFor="titolo" className="mb-2 text-sm font-medium text-gray-900 sr">Titolo</label>
@@ -228,7 +256,7 @@ const AddApartment = () => {
                 required
                 value={formData.indirizzo_completo}
                 onChange={handleChange} />
-              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+              {error && <p className="text-red-500 text-sm mt-1">{error.indirizzo_completo}</p>}
             </div>
 
             <div className="flex flex-wrap gap-4 mb-5 justify-between">
@@ -293,7 +321,7 @@ const AddApartment = () => {
               <select
                 id="tipologia"
                 name="tipologia"
-                className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full sm:w-full md:w-full lg:w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
                 value={formData.tipologia}
                 onChange={handleChange}
@@ -310,7 +338,7 @@ const AddApartment = () => {
                 type="number"
                 id="prezzo_notte"
                 name="prezzo_notte"
-                className="block w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="block w-full sm:w-full md:w-full lg:w-100 p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Prezzo per notte"
                 required
                 value={formData.prezzo_notte}
@@ -331,16 +359,17 @@ const AddApartment = () => {
             </div>
           </div>
 
-          <h2 className="text-2xl font-bold">Seleziona i servizi offerti</h2>
-          <div className="border rounded-sm mx-10 my-5 grid grid-cols-2 lg:grid-cols-5 p-4 gap-4">
+          <h2 className="text-2xl text-center lg:text-left font-bold">Seleziona i servizi offerti</h2>
+          <div className="overflow-auto h-64 md:h-24 border rounded-sm mx-10 my-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 p-4 gap-4">
             {services.map(service => (
-              <div key={service.id}>
+              <div key={service.id} className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   id={`checkbox-${service.id}`}
                   onChange={(e) => handleCheckboxChange(e, service.id)}
+                  className="m-0"
                 />
-                <label htmlFor={`checkbox-${service.id}`}>{service.nome_servizio}</label>
+                <label htmlFor={`checkbox-${service.id}`} className="text-sm">{service.nome_servizio}</label>
               </div>
             ))}
           </div>
@@ -365,7 +394,7 @@ const AddApartment = () => {
             </label>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-4 mb-5">
             {thumbnails.map((thumbnail, index) => (
               <img className="w-64" key={index} src={thumbnail} alt={thumbnail} />
             ))}

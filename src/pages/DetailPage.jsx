@@ -65,7 +65,7 @@ const DetailPage = () => {
     <div>
       <div className="flex justify-between items-center">
 
-        <h2 className="text-5xl font-bold my-6 mx-4">{apartmentDetail.titolo}</h2>
+        <h2 className="lg:text-5xl text-2xl font-bold my-6 mx-4">{apartmentDetail.titolo}</h2>
         <button
           onClick={() => navigate(-1)}
           className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-1 rounded-full hover:scale-105 transition duration-300 lg:w-25 w-20 border border-white cursor-pointer me-10"
@@ -91,7 +91,7 @@ const DetailPage = () => {
         <div className="flex justify-between items-center">
           <div className="text-left">
             <div className="flex items-center">
-              <p className="font-bold uppercase text-2xl mr-1">{apartmentDetail.indirizzo_completo}</p>
+              <p className="font-bold uppercase lg:text-2xl md:texl-lg mr-1">{apartmentDetail.indirizzo_completo}</p>
               {apartmentDetail.media_voti ? <span className="flex items-center"><FontAwesomeIcon icon={faStarSolid} className="text-yellow-400" /> {apartmentDetail.media_voti}</span> : ''}
             </div>
             <p><strong>Tipologia:</strong> {apartmentDetail.tipologia}</p>

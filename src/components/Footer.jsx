@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <footer className="bg-gradient-to-r from-[rgb(170,137,95)] to-[rgb(112,143,150)] text-white">
             <div className="container mx-auto max-w-full py-2 px-4 flex justify-between items-center">
-                <div className="flex space-x-4 lg:w-64">
+                <div className="flex space-x-4 w-[30%] lg:w-64">
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="transition transform duration-300 hover:scale-110">
                         <FontAwesomeIcon icon={faFacebookF} color="white" className='lg:text-3xl text-2xl hover:text-[rgb(98,137,146)]' />
                     </a>
@@ -19,13 +19,13 @@ const Footer = () => {
                     </a>
                 </div>
 
-                <div className='min-w-[150px] max-w-[150px] flex justify-center'>
+                <div className='min-w-[150px] max-w-[150px] w-[30%] flex justify-center'>
                     <Link to={'/'}>
                         <img className="p-4 w-full" src="/logo.png" alt="Logo" />
                     </Link>
                 </div>
 
-                <div className="flex items-center sm:w-64 sm:justify-end">
+                <div className="flex items-center w-[30%] sm:w-64 sm:justify-end">
                     <Link to="/assistenza">
                         <button className="bg-gradient-to-r from-[rgb(170,137,95)] to-[rgb(112,143,150)] text-white p-2 rounded-full hover:scale-105 transition duration-300 lg:w-48 w-24 border border-white">Assistenza</button>
                     </Link>
