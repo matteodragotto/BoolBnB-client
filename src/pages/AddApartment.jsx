@@ -41,7 +41,8 @@ const AddApartment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (error) {
+
+    if (error.email || error.indirizzo_completo) {
       return;
     }
 
@@ -404,7 +405,7 @@ const AddApartment = () => {
           <div className="flex justify-center mb-5">
             <button
               className="bg-gradient-to-r from-[#AA895F] to-[#708F96] text-white p-3 rounded-full hover:scale-105 transition duration-300 lg:w-64 border border-white cursor-pointer mb-5" type="submit"
-              disabled={!!error}>
+            >
               Registra il tuo appartamento
             </button>
           </div>

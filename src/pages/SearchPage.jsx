@@ -45,7 +45,7 @@ const SearchPage = () => {
         </p>
       </div>
       <div className="flex flex-wrap justify-center gap-8 my-10 mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
           {searchResults.map(apartment => (
             <div key={apartment.id} className="flex justify-center w-full">
               <ApartmentCards apartment={apartment} />

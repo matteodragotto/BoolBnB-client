@@ -39,7 +39,7 @@ const HomePage = () => {
       <h2 className="text-center font-bold my-4 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">I B&B e Appartamenti Più Desiderati del Momento – Prenota il Tuo Sogno! 🏡</h2>
       <div className="flex flex-wrap justify-center gap-8 my-10 mx-auto px-4">
         {apartments.length === 0 && <p className="text-center text-lg font-bold text-gray-600">Loading....</p>}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center">
           {apartments.map((apartment) => (
             <div key={apartment.id} className="flex justify-center w-full">
               <ApartmentCards apartment={apartment} />
