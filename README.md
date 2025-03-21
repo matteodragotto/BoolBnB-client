@@ -41,7 +41,9 @@ Gli immobili sono ordinati per numero di cuoricini.
 
 Possibilità di aggiungere cuoricini alle card degli immobili.
 
-Screenshot: (inserire immagine della homepage)
+![Homepage](./public/screenshots/HomePage.png)
+
+
 
 2. Pagina di Ricerca Avanzata
 
@@ -49,7 +51,7 @@ Ricerca avanzata degli immobili filtrando per città, numero di stanze, posti le
 
 Risultati aggiornati dinamicamente senza refresh.
 
-Screenshot: (inserire immagine della pagina di ricerca)
+![Searchpage](./public/screenshots/SearchPage.png)
 
 3. Pagina Dettaglio Immobile
 
@@ -61,7 +63,7 @@ Sezione recensioni con possibilità di lasciare una nuova recensione.
 
 Aggiunta di cuoricini per esprimere gradimento.
 
-Screenshot: (inserire immagine della pagina dettaglio)
+![Detailpage](./public/screenshots/DetailPage.png)
 
 4. Pagina di Inserimento Immobile
 
@@ -69,4 +71,4 @@ Form per aggiungere un nuovo immobile.
 
 Campi obbligatori per garantire la completezza delle informazioni.
 
-Screenshot: (inserire immagine della pagina di inserimento)
+![Formpage](./public/screenshots/FormPage.png)
